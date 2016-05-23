@@ -1,0 +1,11 @@
+{
+    "white": true,
+    "trailing": true,
+    "undef": true,
+    "browser": true,
+    "eqeqeq": true,
+    "curly": true,
+    "predef": [
+    	      "require"
+    ]
+}

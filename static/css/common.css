@@ -1,0 +1,47 @@
+.footer {
+    width: 100%;
+    color: #fff;
+    background: #efefef;
+    padding-top: 5px;
+    margin-top: 5px;
+    height: 50px;
+    font-size: 12px;
+}
+
+.footer ul {
+    float: right;
+    list-style: none;
+    margin-left: 5px;
+    padding-left: 5px;
+}
+
+.footer ul li {
+    float: left;
+    margin-right: 20px;
+}
+
+.footer ul li a {
+    color: #337ab7;
+}
+
+.footer .ctl-logo {
+    height: 30px;
+    margin-left: 20px;
+}
+
+.footer .dental-logo {
+    height: 41px;
+}
+
+.printonly {
+    display: none;
+}
+
+@media print {
+    .printonly {
+        display: block;
+    }
+    .viewonly {
+        display: none !important;
+    }
+}
