@@ -1,16 +1,15 @@
 [
 {
-    "id": 1,
     "available_time": 6,
     "topics": [
         {
-            "summary_text": "Obtain food recall from previous day",
-            "estimated_time": 5,
-            "text": "Obtain food recall from previous day",
-            "summary_reply": "- Some nutrition counseling provided",
-            "reply": "Yesterday was not a typical eating day since Nick was with his grandmother so the mother has to recall the previous day which takes longer.\r\n\r\nThis was a useful choice to help educate your patient, but you no additional time left in the visit.\r\n",
+            "summary_text": "Provide explanation about the follow up office visit",
+            "estimated_time": 3,
+            "text": "Talk about the follow up office visit ",
+            "summary_reply": "Patient apprehensive",
+            "reply": "Nick gets upset when he hears that he has to come back to the dentist and they have to leave the room.  \r\n\r\nYou are unable to complete any education at this time.",
             "actual_time": 6,
-            "id": 11
+            "id": 6
         },
         {
             "summary_text": "Provide tooth brushing demonstration",
@@ -84,10 +83,10 @@
             "actual_time": 6,
             "id": 7
         }
-    ]
+    ],
+    "id": 1
 },
 {
-    "id": 2,
     "available_time": 5,
     "topics": [
         {
@@ -134,7 +133,7 @@
             "reply": "Nick\u2019s mother takes several minutes explaining to you that her husband also has a weight issue and thinks his bad habits are impacting their son. Due to her work schedule he has to do the food shopping and the cooking. She is frustrated and does not know what to do. \r\n\r\nThis was a useful choice to help educate your patient, but there is no time left to provide a tooth brushing demonstration.\r\n\r\n",
             "actual_time": 5,
             "id": 18
-        },
+        },        
         {
             "summary_text": "Calculate Nick\u2019s Body Mass Index ",
             "estimated_time": 3,
@@ -162,6 +161,7 @@
             "actual_time": 5,
             "id": 16
         }
-    ]
+    ],
+    "id": 2
 }
 ]
