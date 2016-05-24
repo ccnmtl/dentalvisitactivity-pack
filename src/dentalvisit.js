@@ -51,11 +51,21 @@ DentalVisitApp.Models.CounselingSessionState = Backbone.Model.extend({
     }
 });
 
+DentalVisitApp.Models.Referral = Backbone.Model.extend({
+    defaults: {
+        date: null,
+        to: null,
+        from: null,
+        medicalHistory: null,
+        reason: null
+    }
+});
+
 DentalVisitApp.Views.PatientChartView = Backbone.View.extend({
     initialize: function(options) {
         _.bindAll(this, 'render');
 
-        this.chartTemplate =
+        this.template =
             require('../static/templates/patientchart-template.html');
         this.chart = new DentalVisitApp.Models.DiscussionTopicList();
         this.chart.bind('add', this.render);
@@ -72,7 +82,7 @@ DentalVisitApp.Views.PatientChartView = Backbone.View.extend({
                 .html('Discussed');
         }
         var $elt = jQuery(this.el).find('.patient-chart-text');
-        var markup = this.chartTemplate({'topics': this.chart.toJSON()});
+        var markup = this.template({'topics': this.chart.toJSON()});
         $elt.html(markup);
     }
 });
@@ -211,6 +221,19 @@ DentalVisitApp.Views.CounselingSessionView = Backbone.View.extend({
     }
 });
 
+DentalVisitApp.Views.ReferralView = Backbone.View.extend({
+    initialize: function(options) {
+        _.bindAll(this, 'render');
+
+        this.template = require('../static/templates/referral-template.html');
+        this.referral = new DentalVisitApp.Models.Referral();
+    },
+    render: function() {
+        var markup = this.template(this.referral.toJSON());
+        jQuery(this.el).html(markup);
+    }
+});
+
 DentalVisitApp.Router = Backbone.Router.extend({
     routes: {
         '': 'initial',
@@ -244,9 +267,11 @@ DentalVisitApp.Router = Backbone.Router.extend({
             chart: this.chartView.chart
         });
 
-        //this.referralView = new DentalVisitApp.Views.ReferralView({
-        //    el: jQuery('div.counseling-session')
-        //});
+        page = jQuery('<div></div>');
+        this.$parent.append(page);
+        this.referralView = new DentalVisitApp.Views.ReferralView({
+            el: page
+        });
     },
     turnPage: function(newView) {
         if (this.currentPage) {
@@ -263,7 +288,7 @@ DentalVisitApp.Router = Backbone.Router.extend({
         this.turnPage(this.followupView);
     },
     referral: function() {
-        //this.turnPage(this.referralView);
+        this.turnPage(this.referralView);
     }
 });
 

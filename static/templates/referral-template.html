@@ -1,0 +1,59 @@
+<nav>
+    <ul class="pagination">
+        <li><a href="#initial">Initial Visit</a></li>
+        <li><a href="#followup">Follow-up Visit</a></li>
+        <li><a href="#referral">Referral</a></li>
+        <li><a href="#final">Finish</a></li>
+    </ul>
+</nav>
+
+<% if (date) { %>
+    <div class="well alert-success complete-overlay">
+        <h1>You've submitted your referral form!</h1>
+    </div>
+<% } %>
+<div class="patient-chart">
+     <div class="patient-chart-text"></div>
+</div>
+
+<div class="referral-form">
+    <div class="referral-form-prescription">
+        <div class="practice-logo">Pediatric Dental Smiles<br />Referral Form</div>
+        <div class="rx_patient">
+            <p><b>PATIENT</b><br />
+            <b>Name:</b> Nick Williams<br />
+            <b>DOB:</b> 03/12/2007<br />
+            <b>Gender:</b> Male<br />
+            <b>Phone #:</b> (817) 555-4444<br />
+            </p>
+        </div>
+        <div class="clearfix">
+            <label>Today’s Date:</label>
+            <input type="text" value="<%= date %>" />
+        </div>
+
+        <div class="clearfix">
+            <label>Referring to:</label>
+            <input type="text" value="<%= to %>" />
+        </div>
+
+        <div class="clearfix">
+            <label>Referring dentist:</label>
+            <input type="text" value="<%= from %>" />
+        </div>
+
+        <div class="clearfix">
+            <label>Reason for referral:</label>
+            <textarea>
+                <%= reason %>
+            </textarea>
+        </div>
+
+        <div class="clearfix">
+            <label>Medical history:</label>
+            <textarea>
+                <%= medicalHistory %>
+            </textarea>
+        </div>
+    </div>
+</div>
