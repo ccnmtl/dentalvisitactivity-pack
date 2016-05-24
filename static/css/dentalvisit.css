@@ -1,41 +1,36 @@
-div.counseling_session {
-    background-color: #e6f2ff;
-    border: 1px solid #b5daff;
-    padding: 8px;
-    -webkit-border-radius: 5px;
-     -moz-border-radius: 5px;
-    border-radius: 5px;
+.counseling-session {
 }
 
-div.information {
+.counseling-session .information {
     float: left;
     width: 210px;
 }
 
-div.available_time {
+.counseling-session .available_time {
     text-align: center;
     border: 0;
     width: 210px;
     margin-bottom: 5px;
     padding: 0;
     background: #fff url('/static/img/icon_stopwatch.jpg') 76px 22px no-repeat;
+    box-shadow: none;
 }
 
-div.time_remaining {
+.counseling-session  .time_remaining {
     font-weight: bold;
     height: 24px;
     line-height: 24px;
     margin-bottom: 21px
 }
 
-div.time_minutes {
+.counseling-session .time_minutes {
     font-weight: bold;
     padding-top: 6px;
     height: 26px;
     line-height: 24px;
 }
 
-span.display_time_text {
+.counseling-session span.display_time_text {
     display: block;
     height: 40px;
     width: 40px;
@@ -45,15 +40,16 @@ span.display_time_text {
     line-height: 40px;
 }
 
-div#patient-chart {
+.counseling-session .patient-chart {
     padding: 80px 0 0 0;
     border: 0;
     background: transparent url('/static/img/clipboard.png') 0 0 no-repeat;
     width: 210px;
     height: 321px;
+    margin-top: 40px;
 }
 
-#patient-chart-text {
+.counseling-session .patient-chart-text {
     padding: 0 2px 0 5px;
     background-color: #fff;
     margin-left: 5px;
@@ -64,61 +60,62 @@ div#patient-chart {
     line-height: 12px;
 }
 
-.session-segment {
+.counseling-session .session-segment {
     margin: 0 0 5px 0;
     padding: 5px;
     background-color: transparent;
-    border: 1px solid #3399cc;
+    border: 0;
+    box-shadow: none;
 }
 
-.session-chart-topic {
+.counseling-session .session-chart-topic {
     font-weight: bold;
 }
 
-.session-chart-reply {
+.counseling-session .session-chart-reply {
+    margin-top: 2px;
     margin-bottom: 10px;
 }
 
-div.panel-group {
+.counseling-session .panel-group {
     float: left;
     margin-left: 10px;
     width: 430px;
 }
 
-div.panel-default {
+.counseling-session .panel-default {
     margin-bottom: 6px;
     vertical-align: middle;
     background-color: #F9F9F9;
 }
 
-div.panel-default.selected {
+.counseling-session .panel-default.selected {
     border: 2px black solid;
 }
 
-div.panel-default:hover {
+.counseling-session .panel-default:hover {
     background-color: #f5f5f5;
 }
 
-div.panel-heading {
+.counseling-session .panel-heading {
     min-height: 3.5em;
 }
-
-div.panel-heading div.discuss {
+.counseling-session .panel-title {
     font-size: 14px;
 }
 
-div.panel-collapse h3 {
+.counseling-session .panel-collapse h3 {
     font-size: 16px;
 }
 
-div.panel-collapse div.available_time {
+.counseling-session .panel-collapse div.available_time {
     float: right;
 }
 
-div.display_time {
+.counseling-session .display_time {
     border: 1px solid transparent;
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
     display: block;
     text-align: center;
     margin-left: auto;
@@ -140,18 +137,18 @@ div.display_time {
     border-bottom-right-radius: 20px;
 }
 
-div.display_time h1 {
+.counseling-session .display_time h1 {
     margin-top: .2em;
 }
 
-div#complete-overlay {
+.counseling-session .complete-overlay {
     z-index: 10000;
     filter: alpha(opacity=50); /*older IE*/
     filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50); /* IE */
     -moz-opacity: .8; /*older Mozilla*/
     -khtml-opacity: 0.8;   /*older Safari*/
     opacity: 0.8;   /*supported by current Mozilla, Safari, and Opera*/
-    background: #cc0000 url('/static/img/icon_warning2.png') 100px center no-repeat;
+    background-color: #cc0000;
     color:#fff;
     text-align: center;
     padding: 0;
@@ -160,11 +157,11 @@ div#complete-overlay {
     vertical-align: middle;
 }
 
-#complete-overlay a {
+.counseling-session .complete-overlay a {
     color:#fff;
 }
 
-#complete-overlay h1 {
+.counseling-session .complete-overlay h1 {
     margin: 0;
     padding: 5px 0 0 0;
     font-size: 18px;
@@ -172,13 +169,13 @@ div#complete-overlay {
     line-height: 20px;
 }
 
-#referral-form {
+.counseling-session .referral-form {
     float: left;
     margin-left: 10px;
     padding: 0;
 }
 
-.referral-form-prescription {
+.counseling-session .referral-form-prescription {
     background: url('/static/img/bg_prescription.png');
     margin: 0 0 20px 0;
     width: 400px;
@@ -188,7 +185,7 @@ div#complete-overlay {
     box-shadow: 2px 2px 12px rgba(50, 50, 50, 0.75);
 }
 
-.referral-form-prescription .practice-logo {
+.counseling-session .referral-form-prescription .practice-logo {
     background: url('/static/img/pediatric_dentistry.png') center 0 no-repeat;
     height: 30px;
     font-weight: bold;
@@ -201,7 +198,7 @@ div#complete-overlay {
     line-height: 12px;
 }
 
-div#referral-patient-chart {
+.counseling-session .referral-patient-chart {
     float: left;
     width: 200px;
     padding: 80px 0 0 0;
@@ -211,12 +208,12 @@ div#referral-patient-chart {
     height: 321px;
 }
 
-.rx_patient {
+.counseling-session .rx_patient {
     font-size: 12px;
     line-height: 13px;
 }
 
-#referral-form label {
+.counseling-session .referral-form label {
     width: 125px;
     display: block;
     float: left;
@@ -227,7 +224,7 @@ div#referral-patient-chart {
     line-height: 25px;
 }
 
-.referral_success {
+.counseling-session .referral_success {
     width: 300px;
     min-height: 20px;
     padding: 10px;
@@ -258,7 +255,6 @@ div#referral-patient-chart {
     50% { background-color: #ff9900; }
     100% { background-color: none; }
 }
-
 
 .flash {
   -moz-animation: flash 1s infinite;
