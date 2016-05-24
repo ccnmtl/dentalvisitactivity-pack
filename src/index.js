@@ -7,7 +7,6 @@ require('../static/css/dentalvisit.css');
 
 var jQuery = require('jquery');
 var module = require('./dentalvisit.js');
-var params = require('./getParameters.js');
 
 jQuery(document).ready(function() {
     module.DentalVisitApp.initialize();
