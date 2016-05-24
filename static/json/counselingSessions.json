@@ -1,0 +1,167 @@
+[
+{
+    "id": 1,
+    "available_time": 6,
+    "topics": [
+        {
+            "summary_text": "Obtain food recall from previous day",
+            "estimated_time": 5,
+            "text": "Obtain food recall from previous day",
+            "summary_reply": "- Some nutrition counseling provided",
+            "reply": "Yesterday was not a typical eating day since Nick was with his grandmother so the mother has to recall the previous day which takes longer.\r\n\r\nThis was a useful choice to help educate your patient, but you no additional time left in the visit.\r\n",
+            "actual_time": 6,
+            "id": 11
+        },
+        {
+            "summary_text": "Provide tooth brushing demonstration",
+            "estimated_time": 3,
+            "text": "Provide tooth brushing demonstration",
+            "summary_reply": "- OHIG",
+            "reply": "Nick\u2019s mother read a story about fluoride being unsafe and while she knows it is important, has several follow up questions about using it for her son.\r\n\r\nThis was a useful choice to help educate your patient, but there is no time left to provide nutrition education.\r\n",
+            "actual_time": 6,
+            "id": 4
+        },
+        {
+            "summary_text": "Advise about sugary drinks",
+            "estimated_time": 3,
+            "text": "Advise about sugary drinks",
+            "summary_reply": "- Soda (-)\r\n- Juice (-)\r\n- Some nutritional counseling provided\r\n",
+            "reply": "The mother comments that she doesn\u2019t give her son any soda but does give him juice. She does not want to cut back on his juice intake because he will not eat fruit and she thinks it is adding to his vitamin intake. She asks for suggestions on how to get him to eat more whole fruit.\r\n\r\nThis was a useful choice to help educate your patient, but there is no time left to provide a tooth brushing demonstration.\r\n",
+            "actual_time": 6,
+            "id": 3
+        },
+        {
+            "summary_text": "Obtain food recall from previous day",
+            "estimated_time": 5,
+            "text": "Obtain food recall from previous day",
+            "summary_reply": "- Some nutrition counseling provided",
+            "reply": "Yesterday was not a typical eating day since Nick was with his grandmother, so the mother has to recall the previous day which takes longer.\r\n\r\nThis was a useful choice to help educate your patient, but you have no additional time left in the visit.",
+            "actual_time": 6,
+            "id": 2
+        },
+        {
+            "summary_text": "Ask about Nick\u2019s weight history",
+            "estimated_time": 4,
+            "text": "Ask about Nick\u2019s weight history",
+            "summary_reply": "- No weight history\r\n- No nutritional counseling\r\n- Patient uncooperative behavior",
+            "reply": "Nick starts to complain about the fluoride varnish, making it impossible for his mother to discuss his weight history and diet. \r\n\r\nYou are unable to complete any education at this time.\r\n",
+            "actual_time": 6,
+            "id": 8
+        },
+        {
+            "summary_text": "Advise about eating healthy snacks",
+            "estimated_time": 3,
+            "text": "Advise about eating healthy snacks",
+            "summary_reply": "- Snacks (+)\r\n- Candy (-)\r\n- Nutritional advice",
+            "reply": "Nick\u2019s mother says he is not allowed to have candy but is unaware that other fermentable carbohydrates can lead to cavities. This leads to additional questions about snack foods and complications with his food allergies.\r\n\r\nThis was a useful choice to help educate your patient, but you do not have enough time to sufficiently answer the additional questions",
+            "actual_time": 4,
+            "id": 5
+        },
+        {
+            "summary_text": "Calculate Nick\u2019s Body Mass Index ",
+            "estimated_time": 3,
+            "text": "Calculate Nick\u2019s Body Mass Index",
+            "summary_reply": "- No height\r\n- No weight\r\n- No BMI",
+            "reply": "There are no height and weight in the patient\u2019s chart. To obtain these metrics you will have to leave the room to use the scale in the hallway adding additional time to calculate the BMI. \r\n\r\nThis was a useful choice to help educate your patient, but it takes longer than you planned.",
+            "actual_time": 4,
+            "id": 1
+        },
+        {
+            "summary_text": "Talk to Nick\u2019s mom about the family\u2019s eating habits",
+            "estimated_time": 3,
+            "text": "Talk about the family\u2019s eating habits",
+            "summary_reply": "- Genetic predisposition to overweight\r\n- Disruptive eating habits",
+            "reply": "Nick\u2019s mother takes several minutes explaining to you that her husband also has a weight issue and thinks his bad habits are impacting their son. Due to her work schedule he has to do the food shopping and the cooking. She is frustrated and does not know what to do. \r\n\r\nThis was a useful choice to help educate your patient, but there is no time left to provide a tooth brushing demonstration.",
+            "actual_time": 6,
+            "id": 9
+        },
+        {
+            "summary_text": "Provide handouts on caries prevention",
+            "estimated_time": 1,
+            "text": "Give handouts on caries prevention",
+            "summary_reply": "- Nutritional counseling handouts given, patient uncooperative behavior",
+            "reply": "You intend to discuss the handouts but get called out of the room for an emergency phone call.\r\n\r\nYou are unable to complete the education at this time.\r\n",
+            "actual_time": 6,
+            "id": 7
+        }
+    ]
+},
+{
+    "id": 2,
+    "available_time": 5,
+    "topics": [
+        {
+            "summary_text": "Provide tooth brushing demonstration",
+            "estimated_time": 3,
+            "text": "Provide tooth brushing demonstration",
+            "summary_reply": "- OHIG",
+            "reply": "Nick\u2019s mother read a story about fluoride being unsafe and while she knows it is important, has several follow up questions about using it for her son.\r\n\r\nThis was a useful choice to help educate your patient, but there is no time left to provide nutrition education.\r\n",
+            "actual_time": 5,
+            "id": 13
+        },
+        {
+            "summary_text": "Obtain food recall from previous day",
+            "estimated_time": 5,
+            "text": "Obtain food recall from previous day",
+            "summary_reply": "- Some nutrition counseling provided",
+            "reply": "Yesterday was not a typical eating day since Nick was with his grandmother so the mother has to recall the previous day which takes longer.\r\n\r\nThis was a useful choice to help educate your patient, but you no additional time left in the visit.\r\n",
+            "actual_time": 6,
+            "id": 11
+        },
+        {
+            "summary_text": "Advise about sugary drinks",
+            "estimated_time": 3,
+            "text": "Advise about sugary drinks",
+            "summary_reply": "- Soda (-)\r\n- Juice (-)\r\n- Some nutritional counseling provided\r\n",
+            "reply": "The mother comments that she doesn\u2019t give her son any soda but does give him juice. She does not want to cut back on his juice intake because he will not eat fruit and she thinks it is adding to his vitamin intake. She asks for suggestions on how to get him to eat more whole fruit.\r\n\r\nThis was a useful choice to help educate your patient, but there is no time left to provide a tooth brushing demonstration.\r\n",
+            "actual_time": 5,
+            "id": 12
+        },
+        {
+            "summary_text": "Postoperative Instructions",
+            "estimated_time": 3,
+            "text": "Postoperative Instructions",
+            "summary_reply": "- Patient apprehensive",
+            "reply": "Nick is upset from the treatment and his mother is unable to pay attention to in depth education at this time.  \r\n\r\nThis was a useful choice to help educate your patient, but there is no time left to provide nutrition education.",
+            "actual_time": 5,
+            "id": 15
+        },
+        {
+            "summary_text": "Talk to Nick\u2019s mom about the family\u2019s eating habits",
+            "estimated_time": 3,
+            "text": "Talk about the family\u2019s eating habits",
+            "summary_reply": "- No weight history\r\n- No nutritional counseling\r\n- Patient uncooperative behavior\r\n",
+            "reply": "Nick\u2019s mother takes several minutes explaining to you that her husband also has a weight issue and thinks his bad habits are impacting their son. Due to her work schedule he has to do the food shopping and the cooking. She is frustrated and does not know what to do. \r\n\r\nThis was a useful choice to help educate your patient, but there is no time left to provide a tooth brushing demonstration.\r\n\r\n",
+            "actual_time": 5,
+            "id": 18
+        },
+        {
+            "summary_text": "Calculate Nick\u2019s Body Mass Index ",
+            "estimated_time": 3,
+            "text": "Calculate Nick\u2019s Body Mass Index ",
+            "summary_reply": "- No height\r\n- No weight\r\n- No BMI\r\n",
+            "reply": "There are no height and weight in the patient\u2019s chart. To obtain these metrics you will have to leave the room to use the scale in the hallway adding additional time to calculate the BMI.\r\n\r\nThis was a useful choice to help educate your patient, but it took longer than you planned.\r\n",
+            "actual_time": 4,
+            "id": 10
+        },
+        {
+            "summary_text": "Advise about eating healthy snacks",
+            "estimated_time": 3,
+            "text": "Advise about eating healthy snacks",
+            "summary_reply": "- Snacks (+)\r\n- Candy (-)\r\n- Nutritional advice",
+            "reply": "Nick\u2019s mother says he is not allowed to have candy but is unaware that other fermentable carbohydrates can lead to cavities. This leads to additional questions about snack foods and complications with his food allergies.  \r\n\r\nThis was a useful choice to help educate your patient, but you only have 1 minutes left in the visit.",
+            "actual_time": 4,
+            "id": 14
+        },
+        {
+            "summary_text": "Provide handouts on caries prevention",
+            "estimated_time": 1,
+            "text": "Give handouts on caries prevention",
+            "summary_reply": "- Nutritional counseling handouts given\r\n- Patient uncooperative behavior",
+            "reply": "You intend to discuss the handouts but get called out of the room for an emergency phone call.\r\n\r\nYou are unable to complete the education at this time.\r\n",
+            "actual_time": 5,
+            "id": 16
+        }
+    ]
+}
+]

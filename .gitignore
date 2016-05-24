@@ -1,0 +1,6 @@
+.project
+.settings
+dist
+node_modules
+etc
+npm-debug.log
