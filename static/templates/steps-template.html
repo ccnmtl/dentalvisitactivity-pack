@@ -1,0 +1,19 @@
+<% var nextIdx = current + 1; %>
+<% for (var i = 0; i < steps.length; i++) { %>
+    <a href="#<%=numbers[i]%>" data-idx='<%=i%>'
+        <% if (i === current) { %>
+            class="btn btn-arrow-right btn-step btn-primary"
+        <% } else if (i === nextIdx && steps[current].complete && !steps[i].complete) { %>
+            class="btn btn-arrow-right btn-step btn-info flash-next"
+        <% } else { %>
+            <% if (!steps[i].complete) { %>
+                disabled="disabled"
+            <% } %> 
+            class="btn btn-arrow-right btn-step btn-info"
+        <% } %>
+    >Step <%=i + 1%></a>
+<% } %>
+
+<a href="#" class="btn btn-default btn-print">
+    <span class="glyphicon glyphicon-print"></span>
+</a>

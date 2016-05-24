@@ -1,0 +1,39 @@
+.flash-next {
+    -moz-animation: flash-orange 2s infinite;
+    -webkit-animation: flash-orange 2s infinite;
+    -ms-animation: flash-orange 2s infinite;
+    animation: flash-orange 2s infinite;
+    color: #333;
+}
+
+.btn-step[disabled],
+.btn-step[disabled]:hover,
+.btn-step[disabled]:active,
+.btn-step[disabled]:focus {
+    opacity: 1;
+    color: #adadad;
+    background-color: #fff;
+    border-color: #ccc;
+}
+
+@-webkit-keyframes flash-orange {
+    0% { background-color: #fff; border-color: #ccc; }
+    50% { background-color: #f0ad4e; border-color: #eea236; }
+    100% { background-color: #fff; border-color: #ccc; }
+}
+
+@-moz-keyframes flash-orange {
+    0% { background-color: #fff; border-color: #ccc; }
+    50% { background-color: #f0ad4e; border-color: #eea236; }
+    100% { background-color: #fff; border-color: #ccc; }
+}
+
+@-ms-keyframes flash-orange {
+    0% { background-color: #fff; border-color: #ccc; }
+    50% { background-color: #f0ad4e; border-color: #eea236; }
+    100% { background-color: #fff; border-color: #ccc; }
+}
+
+.btn-print {
+    margin-left: 20px;
+}

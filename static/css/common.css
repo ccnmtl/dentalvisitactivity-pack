@@ -1,11 +1,20 @@
+.titlebar {
+    border-bottom: 1px solid #e5e5e5;
+    padding: 10px 0;
+}
+
+.interactive-module-title {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
 .footer {
-    width: 100%;
     color: #fff;
     background: #efefef;
-    padding-top: 5px;
-    margin-top: 5px;
+    padding-top: 10px;
     height: 50px;
     font-size: 12px;
+    margin-top: 30px;
 }
 
 .footer ul {
@@ -24,12 +33,12 @@
     color: #337ab7;
 }
 
-.footer .ctl-logo {
+.ctl-logo {
     height: 30px;
     margin-left: 20px;
 }
 
-.footer .dental-logo {
+.dental-logo {
     height: 41px;
 }
 
@@ -44,4 +53,38 @@
     .viewonly {
         display: none !important;
     }
+}
+
+@-webkit-keyframes flash-orange {
+    0% { background-color: #fff; border-color: #ccc; }
+    50% { background-color: #f0ad4e; border-color: #eea236; }
+    100% { background-color: #fff; border-color: #ccc; }
+}
+
+@-moz-keyframes flash-orange {
+    0% { background-color: #fff; border-color: #ccc; }
+    50% { background-color: #f0ad4e; border-color: #eea236; }
+    100% { background-color: #fff; border-color: #ccc; }
+}
+
+@-ms-keyframes flash-orange {
+    0% { background-color: #fff; border-color: #ccc; }
+    50% { background-color: #f0ad4e; border-color: #eea236; }
+    100% { background-color: #fff; border-color: #ccc; }
+}
+
+.flash {
+  -moz-animation: flash-orange 1s infinite;
+  -webkit-animation: flash-orange 1s infinite;
+  -ms-animation: flash-orange 1s infinite;
+  animation: flash-orange 1s infinite;
+}
+
+.form-group .error-block {
+    display: none;
+    color: #a94442;
+}
+
+.form-group.has-error .error-block {
+    display: block;
 }
