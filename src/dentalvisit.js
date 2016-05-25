@@ -149,6 +149,9 @@ DentalVisitApp.Views.CounselingSessionView = Backbone.View.extend({
                 $overlay.find('h1').html('You\'ve run out of time!');
             }
             $overlay.show();
+            
+            jQuery('.steps a.btn-primary').first().removeClass('btn-primary').addClass('btn-info');
+            jQuery('.steps a[disabled="disabled"]').first().removeAttr('disabled').addClass('flash-blue');
         } else {
             $overlay.hide();
         }
@@ -231,15 +234,16 @@ DentalVisitApp.Views.ReferralView = Backbone.View.extend({
     render: function() {
         var markup = this.template(this.referral.toJSON());
         jQuery(this.el).html(markup);
+        this.$el.show();
     }
 });
 
 DentalVisitApp.Router = Backbone.Router.extend({
     routes: {
-        '': 'initial',
-        'initial': 'initial',
-        'followup': 'followup',
-        'referral': 'referral'
+        '': 'one',
+        'one': 'one',
+        'two': 'two',
+        'three': 'three'
     },
     initialize: function(options) {
         this.sessions =
@@ -258,6 +262,7 @@ DentalVisitApp.Router = Backbone.Router.extend({
             session: this.sessions.get(1),
             chart: this.chartView.chart
         });
+        
 
         page = jQuery('<div></div>');
         this.$parent.append(page);
@@ -273,7 +278,16 @@ DentalVisitApp.Router = Backbone.Router.extend({
             el: page
         });
     },
-    turnPage: function(newView) {
+    nextPage: function() {
+        var btn = jQuery('.steps a[disabled="disabled"]').first();
+        jQuery(btn).removeAttr('disabled');
+        jQuery(btn).click();
+    },
+    turnPage: function(newView, btn) {
+        jQuery('.steps .flash-blue').removeClass('.flash-blue');
+        jQuery('.steps a.btn-primary').removeClass('btn-primary').addClass('btn-info');
+        jQuery('.steps a[href="' + btn + '"]').addClass('btn-primary').removeClass('btn-info');
+
         if (this.currentPage) {
             jQuery(this.currentPage.el).hide();
         }
@@ -281,14 +295,14 @@ DentalVisitApp.Router = Backbone.Router.extend({
         newView.render();
         this.chartView.render();
     },
-    initial: function() {
-        this.turnPage(this.initialView);
+    one: function(params) {
+        this.turnPage(this.initialView, '#one');
     },
-    followup: function() {
-        this.turnPage(this.followupView);
+    two: function(params) {
+        this.turnPage(this.followupView, '#two');
     },
-    referral: function() {
-        this.turnPage(this.referralView);
+    three: function(params) {
+        this.turnPage(this.referralView, '#three');
     }
 });
 

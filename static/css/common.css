@@ -1,9 +1,7 @@
 .footer {
-    width: 100%;
     color: #fff;
     background: #efefef;
-    padding-top: 5px;
-    margin-top: 5px;
+    padding-top: 10px;
     height: 50px;
     font-size: 12px;
 }
@@ -24,12 +22,12 @@
     color: #337ab7;
 }
 
-.footer .ctl-logo {
+.ctl-logo {
     height: 30px;
     margin-left: 20px;
 }
 
-.footer .dental-logo {
+.dental-logo {
     height: 41px;
 }
 
@@ -44,4 +42,60 @@
     .viewonly {
         display: none !important;
     }
+}
+
+@-webkit-keyframes flash-orange {
+    0% { background-color: none; }
+    50% { background-color: #ff9900; }
+    100% { background-color: none; }
+}
+
+@-moz-keyframes flash-orange {
+    0% { background-color: none; }
+    50% { background-color: #ff9900; }
+    100% { background-color: none; }
+}
+
+@-ms-keyframes flash-orange {
+    0% { background-color: none; }
+    50% { background-color: #ff9900; }
+    100% { background-color: none; }
+}
+
+.flash {
+  -moz-animation: flash-orange 1s infinite;
+  -webkit-animation: flash-orange 1s infinite;
+  -ms-animation: flash-orange 1s infinite;
+  animation: flash-orange 1s infinite;
+}
+
+@-ms-keyframes flash-blue {
+    0% { background-color: none; color: #333; }
+    50% { background-color: #2e6da4; color: white; }
+    100% { background-color: none; color: #333; }
+}
+
+@-moz-keyframes flash-blue {
+    0% { background-color: none; color: #333; }
+    50% { background-color: #2e6da4; color: white; }
+    100% { background-color: none; color: #333; }
+}
+
+@-webkit-keyframes flash-blue {
+    0% { background-color: none; color: #333; }
+    50% { background-color: #2e6da4; color: white; }
+    100% { background-color: none; color: #333; }
+}
+
+.flash-blue {
+  -moz-animation: flash-blue 2s infinite;
+  -webkit-animation: flash-blue 2s infinite;
+  -ms-animation: flash-blue 2s infinite;
+  animation: flash-blue 2s infinite;    
+}
+
+.btn-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
 }
