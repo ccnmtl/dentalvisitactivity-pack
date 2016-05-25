@@ -1,4 +1,5 @@
 /* global jQuery: true, module: true */
+
 jQuery = require('jquery');
 var Backbone = require('backbone');
 var _ = require('underscore');
@@ -10,10 +11,9 @@ var DentalVisitApp = {
     Models: {},
     Views: {},
     Router: {},
-
     inst: {},
 
-    initialize: function() {
+    initialize: function(options) {
         if (!this.inst.hasOwnProperty('router')) {
             this.inst.router = new DentalVisitApp.Router();
         }
@@ -46,9 +46,34 @@ DentalVisitApp.Models.CounselingSessionList = Backbone.Collection.extend({
 
 DentalVisitApp.Models.CounselingSessionState = Backbone.Model.extend({
     defaults: {
-        answered: [],
         elapsed_time: null,
-        current_topic: null
+        countdown: null
+    }
+});
+
+DentalVisitApp.Views.PatientChartView = Backbone.View.extend({
+    initialize: function(options) {
+        _.bindAll(this, 'render');
+
+        this.chartTemplate =
+            require('../static/templates/patientchart-template.html');
+        this.chart = new DentalVisitApp.Models.DiscussionTopicList();
+        this.chart.bind('add', this.render);
+    },
+    render: function() {
+        for (var i = 0; i < this.chart.length; i++)  {
+            var topic = this.chart.at(i);
+            var q = '.panel[data-id="' + topic.get('id') + '"]';
+            var $btn = jQuery(q).find('.btn.discuss');
+
+            $btn.removeClass('btn-info btn-danger')
+                .addClass('btn-success')
+                .attr('disabled', 'disabled')
+                .html('Discussed');
+        }
+        var $elt = jQuery(this.el).find('.patient-chart-text');
+        var markup = this.chartTemplate({'topics': this.chart.toJSON()});
+        $elt.html(markup);
     }
 });
 
@@ -64,8 +89,6 @@ DentalVisitApp.Views.CounselingSessionView = Backbone.View.extend({
 
         this.template =
             require('../static/templates/session-template.html');
-        this.chartTemplate =
-            require('../static/templates/patientchart-template.html');
 
         // empty state object
         this.state = new DentalVisitApp.Models.CounselingSessionState();
@@ -73,52 +96,32 @@ DentalVisitApp.Views.CounselingSessionView = Backbone.View.extend({
         this.state.bind('change:countdown', this.renderCountdown);
 
         this.session = options.session;
+        this.chart = options.chart;
     },
     render: function() {
         // Only invoked once when the session model is instantiated
-        this.el.innerHTML = this.template(this.session.toJSON());
-
+        this.$el.html(this.template(this.session.toJSON()));
+        this.$el.show();
         this.renderTime(); // explicit
         this.renderState(); // explicit
     },
     renderState: function() {
-        var discussed = 'Discussed';
-
-        // patient chart + enable/disable
-        jQuery('#patient-chart-text').html('');
-        var json = this.state.toJSON();
-        json.topics = [];
-        var answered = this.state.get('answered');
-
-        for (var i = 0; i < answered.length; i++)  {
-            // hydrate the 'answer' topic with full attributes
-            var topic = this.session.get('topics').get(answered[i]);
-            json.topics.push(topic.toJSON());
-
-            // Disable the topic's button
-            var btn =  jQuery('#' + answered[i]).find('.btn.discuss');
-            jQuery(btn).removeClass('btn-info')
-                .addClass('btn-success')
-                .attr('disabled', 'disabled')
-                .html(discussed);
-        }
-        jQuery('#patient-chart-text').append(this.chartTemplate(json));
-
         var availableTime = this.session.get('available_time') -
             this.state.get('elapsed_time');
         var enabled = 0;
         var notimeleft = 'No time left!';
 
         this.session.get('topics').forEach(function(topic) {
+            var q = '.panel[data-id="' + topic.get('id') + '"]';
+            var $btn = jQuery(q).find('.btn.discuss');
+
             if (topic.get('estimated_time') > availableTime) {
-                var btn = jQuery('#' + topic.get('id')).find('.btn.discuss');
-                jQuery(btn).removeClass('btn-info')
+                $btn.removeClass('btn-info')
                     .addClass('btn-danger')
                     .attr('disabled', 'disabled')
                     .html(notimeleft);
             } else {
-                jQuery('#' + topic.get('id')).find('.btn.discuss')
-                    .removeAttr('disabled');
+                $btn.removeAttr('disabled');
                 enabled++;
             }
         });
@@ -127,18 +130,17 @@ DentalVisitApp.Views.CounselingSessionView = Backbone.View.extend({
         // 1. The available time <= 0
         // 2. All topics are discussed
         // 3. Remaining topics estimated_time > available_time
+        var $overlay = jQuery(this.el).find('.complete-overlay');
         if (availableTime <= 0 || enabled === 0) {
             // The Activity Is Complete
             if (availableTime > 0 && enabled === 0) {
-                jQuery('#complete-overlay h1').html(
-                    'You\'ve completed your session!');
+                $overlay.find('h1').html('You\'ve completed your session!');
             } else {
-                jQuery('#complete-overlay h1').html(
-                    'You\'ve run out of time!');
+                $overlay.find('h1').html('You\'ve run out of time!');
             }
-            jQuery('#complete-overlay').show();
+            $overlay.show();
         } else {
-            jQuery('#complete-overlay').hide();
+            $overlay.hide();
         }
     },
     renderCountdown: function() {
@@ -185,24 +187,27 @@ DentalVisitApp.Views.CounselingSessionView = Backbone.View.extend({
         jQuery(parent).addClass('selected');
         jQuery(parent).find('.panel-collapse').addClass('in');
 
-        var dataId = jQuery(elt).data('id');
-        var topic = this.session.get('topics').get(dataId);
-
-        jQuery('#display_time').addClass('flash');
+        jQuery(this.el).find('.display_time').addClass('flash');
         jQuery(parent).find('.btn.complete')
            .attr('disabled', 'disabled').addClass('flash');
 
-        this.state.get('answered').push(topic.id);
+        var dataId = jQuery(parent).data('id');
+        var topic = this.session.get('topics').get(dataId);
         this.state.set({
             'countdown': topic.get('actual_time')
         });
     },
     onCloseDiscussion: function(evt) {
         evt.stopImmediatePropagation();
+
         var parent = jQuery(evt.currentTarget).parents('.panel-default');
         jQuery(parent).removeClass('selected');
         jQuery(parent).find('.panel-collapse').removeClass('in');
         this.renderState();
+
+        var dataId = jQuery(parent).data('id');
+        var topic = this.session.get('topics').get(dataId);
+        this.chart.add(topic);
     }
 });
 
@@ -213,37 +218,52 @@ DentalVisitApp.Router = Backbone.Router.extend({
         'followup': 'followup',
         'referral': 'referral'
     },
-    initialize: function() {
+    initialize: function(options) {
         this.sessions =
             new DentalVisitApp.Models.CounselingSessionList(sessions);
 
-        this.initialView = new DentalVisitApp.Views.CounselingSessionView({
-            el: jQuery('div.counseling-session'),
-            session: this.sessions.get(1)
+        this.$parent = jQuery('.counseling-session');
+
+        this.chartView = new DentalVisitApp.Views.PatientChartView({
+            el: this.$parent
         });
 
+        var page = jQuery('<div></div>');
+        this.$parent.append(page);
+        this.initialView = new DentalVisitApp.Views.CounselingSessionView({
+            el: page,
+            session: this.sessions.get(1),
+            chart: this.chartView.chart
+        });
+
+        page = jQuery('<div></div>');
+        this.$parent.append(page);
         this.followupView = new DentalVisitApp.Views.CounselingSessionView({
-            el: jQuery('div.counseling-session'),
-            session: this.sessions.get(2)
+            el: page,
+            session: this.sessions.get(2),
+            chart: this.chartView.chart
         });
 
         //this.referralView = new DentalVisitApp.Views.ReferralView({
         //    el: jQuery('div.counseling-session')
         //});
-
-        jQuery('#reset').click(function(e) {
-            DentalVisitApp.initialize();
-            DentalVisitApp.inst.router.navigate('initial', {trigger: true});
-        });
+    },
+    turnPage: function(newView) {
+        if (this.currentPage) {
+            jQuery(this.currentPage.el).hide();
+        }
+        this.currentPage = newView;
+        newView.render();
+        this.chartView.render();
     },
     initial: function() {
-        this.initialView.render();
+        this.turnPage(this.initialView);
     },
-    followupView: function() {
-        this.followupView.render();
+    followup: function() {
+        this.turnPage(this.followupView);
     },
     referral: function() {
-        this.referralView.show();
+        //this.turnPage(this.referralView);
     }
 });
 

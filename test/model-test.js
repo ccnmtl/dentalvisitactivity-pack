@@ -26,6 +26,6 @@ describe('CounselingSessionList', function () {
         assert.equal(topic.get('actual_time'), 6);
         assert.equal(
             topic.get('summary_text'),
-            'Obtain food recall from previous day');
+            'Provide explanation about the follow up office visit');
     });
 });

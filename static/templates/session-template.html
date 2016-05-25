@@ -1,39 +1,45 @@
-    <div id="complete-overlay" class="well alert-error">
+    <nav>
+        <ul class="pagination">
+            <li><a href="#initial">Initial Visit</a></li>
+            <li><a href="#followup">Follow-up Visit</a></li>
+            <li><a href="#referral">Referral</a></li>
+            <li><a href="#final">Finish</a></li>
+        </ul>
+    </nav>
+
+    <div class="well alert-error complete-overlay">
         <h1>You've run out of time!</h1>
         All information was recorded in your patient's chart.
     </div>
     <div class="information">
         <div class="available_time clearfix well">
             <div class="time_remaining">Time remaining:</div>
-            <div id="display_time" class="display_time"><span class="display_time_text"></span></div>
+            <div class="display_time"><span class="display_time_text"></span></div>
             <div class="time_minutes">minutes</div>
         </div>
-        <div id="patient-chart">
-             <div id="patient-chart-text"></div>
+        <div class="patient-chart">
+             <div class="patient-chart-text"></div>
         </div>
     </div>
-    <div id="topic-accordion" class="panel-group">
+    <div class="panel-group">
         <% for (var i = 0; i < topics.models.length; i++) {%>
             <% var topic = topics.models[i] %> 
-            <div id="<%=topic.attributes.id%>" class="panel panel-default">
+            <div data-id="<%= topic.attributes.id %>" class="panel panel-default">
                 <div class="panel-heading">
                     <div class="panel-title">
-                        <div class="discuss">
-                            <%= topic.attributes.text %>
-                            <button class="btn btn-info btn-sm pull-right discuss" data-id="<%= topic.attributes.id %>" data-toggle="collapse"
-                                    data-target="#reply-<%= topic.attributes.id %>" data-parent="#topics-accordion">
-                                <%= topic.attributes.estimated_time %> minutes (estimated)
-                            </button>
-                        </div>
+                        <%= topic.attributes.text %>
+                        <button class="btn btn-info btn-sm pull-right discuss">
+                            <%= topic.attributes.estimated_time %> minutes (estimated)
+                        </button>
                     </div>
                 </div>
-                <div id="reply-<%= topic.attributes.id %>" class="panel-collapse collapse" data-id="<%=topic.attributes.id%>">
+                <div class="panel-collapse collapse">
                     <div class="panel-body">
                         <div><%= topic.attributes.reply %><br /></div>
 
                         <h3>Actual Time: <%= topic.attributes.actual_time %> minutes</h3>
 
-                        <button disabled="disabled" class="btn btn-default complete pull-right" data-toggle="collapse" data-target="#reply-<%= topic.attributes.id %>" data-parent="#topics-accordion">
+                        <button disabled="disabled" class="btn btn-default complete pull-right">
                             Close<br />
                         </button>
                         <div class="clearfix"></div>
@@ -42,3 +48,4 @@
             </div>
         <% } %>
     </div>
+    <div class="clearfix"></div>

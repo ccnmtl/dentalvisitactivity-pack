@@ -1,8 +1,8 @@
 <% if (topics.length > 0) { %>
     <div class="well session-segment">
         <div class="session-chart-answered">
-            <% for (var i; i < topics.length; i++) { %>
-                <% var answer = topics[i] %> 
+            <% for (var i=0; i < topics.length; i++) { %>
+                <% var answer = topics[i] %>
                 <div class="session-chart-topic"><%= answer.summary_text %></div>
                 <div class="session-chart-reply"><%= answer.summary_reply %></div>
             <% } %>
