@@ -3,6 +3,7 @@
 jQuery = require('jquery');
 var Backbone = require('backbone');
 var _ = require('underscore');
+var NumberedStepsView = require('./steps.js');
 
 // load json data
 var sessions = require('../static/json/counselingSessions.json');
@@ -81,7 +82,7 @@ DentalVisitApp.Views.PatientChartView = Backbone.View.extend({
                 .attr('disabled', 'disabled')
                 .html('Discussed');
         }
-        var $elt = jQuery(this.el).find('.patient-chart-text');
+        var $elt = this.$el.find('.patient-chart-text');
         var markup = this.template({'topics': this.chart.toJSON()});
         $elt.html(markup);
     }
@@ -140,20 +141,17 @@ DentalVisitApp.Views.CounselingSessionView = Backbone.View.extend({
         // 1. The available time <= 0
         // 2. All topics are discussed
         // 3. Remaining topics estimated_time > available_time
-        var $overlay = jQuery(this.el).find('.complete-overlay');
+        var $status = this.$el.find('.time_remaining');
         if (availableTime <= 0 || enabled === 0) {
             // The Activity Is Complete
             if (availableTime > 0 && enabled === 0) {
-                $overlay.find('h1').html('You\'ve completed your session!');
+                $status.html('Session Complete');
+                $status.addClass('alert-success');
             } else {
-                $overlay.find('h1').html('You\'ve run out of time!');
+                $status.html('Out of Time!');
+                $status.addClass('alert-danger');
             }
-            $overlay.show();
-            
-            jQuery('.steps a.btn-primary').first().removeClass('btn-primary').addClass('btn-info');
-            jQuery('.steps a[disabled="disabled"]').first().removeAttr('disabled').addClass('flash-blue');
-        } else {
-            $overlay.hide();
+            DentalVisitApp.inst.router.enableNext();
         }
     },
     renderCountdown: function() {
@@ -200,7 +198,7 @@ DentalVisitApp.Views.CounselingSessionView = Backbone.View.extend({
         jQuery(parent).addClass('selected');
         jQuery(parent).find('.panel-collapse').addClass('in');
 
-        jQuery(this.el).find('.display_time').addClass('flash');
+        this.$el.find('.display_time').addClass('flash');
         jQuery(parent).find('.btn.complete')
            .attr('disabled', 'disabled').addClass('flash');
 
@@ -225,15 +223,55 @@ DentalVisitApp.Views.CounselingSessionView = Backbone.View.extend({
 });
 
 DentalVisitApp.Views.ReferralView = Backbone.View.extend({
+    events: {
+        'click .btn-refer': 'onRefer'
+    },    
     initialize: function(options) {
-        _.bindAll(this, 'render');
+        _.bindAll(this, 'render', 'onRefer');
 
         this.template = require('../static/templates/referral-template.html');
         this.referral = new DentalVisitApp.Models.Referral();
     },
     render: function() {
-        var markup = this.template(this.referral.toJSON());
-        jQuery(this.el).html(markup);
+        var markup = this.template({'referral': this.referral.toJSON()});
+        this.$el.html(markup);
+        this.$el.show();
+    },
+    onRefer: function(evt) {
+        var self = this;
+        evt.preventDefault();
+
+        this.$el.find('.form-group').removeClass('has-error');
+
+        var valid = true;
+        // validate fields are not empty
+        this.$el.find('input,textarea').each(function() {
+            if (jQuery(this).val() === '') {
+                jQuery(this).parents('.form-group').addClass('has-error');
+                valid = false;
+            } else {
+                self.referral.set(
+                    jQuery(this).attr('name'), jQuery(this).val());
+            }
+        });
+
+        if (valid) {
+            DentalVisitApp.inst.router.enableNext();
+        }
+
+        return false;
+    }
+});
+
+DentalVisitApp.Views.ReferralVisitView = Backbone.View.extend({
+    initialize: function(options) {
+        _.bindAll(this, 'render');
+
+        this.template = require(
+            '../static/templates/referral-visit-template.html');
+    },
+    render: function() {
+        this.$el.html(this.template({}));
         this.$el.show();
     }
 });
@@ -243,11 +281,17 @@ DentalVisitApp.Router = Backbone.Router.extend({
         '': 'one',
         'one': 'one',
         'two': 'two',
-        'three': 'three'
+        'three': 'three',
+        'four': 'four'
     },
     initialize: function(options) {
         this.sessions =
             new DentalVisitApp.Models.CounselingSessionList(sessions);
+
+        this.steps = new NumberedStepsView({
+            el: jQuery('.steps'),
+            steps: 4
+        });
 
         this.$parent = jQuery('.counseling-session');
 
@@ -255,6 +299,7 @@ DentalVisitApp.Router = Backbone.Router.extend({
             el: this.$parent
         });
 
+        // Step 1
         var page = jQuery('<div></div>');
         this.$parent.append(page);
         this.initialView = new DentalVisitApp.Views.CounselingSessionView({
@@ -262,8 +307,9 @@ DentalVisitApp.Router = Backbone.Router.extend({
             session: this.sessions.get(1),
             chart: this.chartView.chart
         });
-        
+        this.currentPage = this.initialView;
 
+        // Step 2
         page = jQuery('<div></div>');
         this.$parent.append(page);
         this.followupView = new DentalVisitApp.Views.CounselingSessionView({
@@ -272,37 +318,45 @@ DentalVisitApp.Router = Backbone.Router.extend({
             chart: this.chartView.chart
         });
 
+        // Step 3
         page = jQuery('<div></div>');
         this.$parent.append(page);
-        this.referralView = new DentalVisitApp.Views.ReferralView({
+        this.referralView = new DentalVisitApp.Views.ReferralView({el: page});
+
+        // Step 4
+        page = jQuery('<div></div>');
+        this.$parent.append(page);
+        this.referralVisitView = new DentalVisitApp.Views.ReferralVisitView({
             el: page
         });
-    },
-    nextPage: function() {
-        var btn = jQuery('.steps a[disabled="disabled"]').first();
-        jQuery(btn).removeAttr('disabled');
-        jQuery(btn).click();
-    },
-    turnPage: function(newView, btn) {
-        jQuery('.steps .flash-blue').removeClass('.flash-blue');
-        jQuery('.steps a.btn-primary').removeClass('btn-primary').addClass('btn-info');
-        jQuery('.steps a[href="' + btn + '"]').addClass('btn-primary').removeClass('btn-info');
 
-        if (this.currentPage) {
-            jQuery(this.currentPage.el).hide();
-        }
+        Backbone.history.start();
+        jQuery('body').show();
+    },
+    enableNext: function() {
+        this.steps.enableNext();
+    },
+    next: function(newView, btn) {
+        this.steps.next(btn);
+
+        this.currentPage.$el.hide();
+
         this.currentPage = newView;
-        newView.render();
+        this.currentPage.render();
+
         this.chartView.render();
     },
-    one: function(params) {
-        this.turnPage(this.initialView, '#one');
+    one: function() {
+        this.next(this.initialView, '#one');
     },
-    two: function(params) {
-        this.turnPage(this.followupView, '#two');
+    two: function() {
+        this.next(this.followupView, '#two');
     },
-    three: function(params) {
-        this.turnPage(this.referralView, '#three');
+    three: function() {
+        this.next(this.referralView, '#three');
+    },
+    four: function() {
+        this.next(this.referralVisitView, '#four');
     }
 });
 

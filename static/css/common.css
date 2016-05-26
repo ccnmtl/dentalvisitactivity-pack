@@ -1,9 +1,15 @@
+.titlebar {
+    border-bottom: 1px solid #e5e5e5;
+    padding: 10px 0;
+}
+
 .footer {
     color: #fff;
     background: #efefef;
     padding-top: 10px;
     height: 50px;
     font-size: 12px;
+    margin-top: 30px;
 }
 
 .footer ul {
@@ -45,22 +51,23 @@
 }
 
 @-webkit-keyframes flash-orange {
-    0% { background-color: none; }
-    50% { background-color: #ff9900; }
-    100% { background-color: none; }
+    0% { background-color: #fff; border-color: #ccc; }
+    50% { background-color: #f0ad4e; border-color: #eea236; }
+    100% { background-color: #fff; border-color: #ccc; }
 }
 
 @-moz-keyframes flash-orange {
-    0% { background-color: none; }
-    50% { background-color: #ff9900; }
-    100% { background-color: none; }
+    0% { background-color: #fff; border-color: #ccc; }
+    50% { background-color: #f0ad4e; border-color: #eea236; }
+    100% { background-color: #fff; border-color: #ccc; }
 }
 
 @-ms-keyframes flash-orange {
-    0% { background-color: none; }
-    50% { background-color: #ff9900; }
-    100% { background-color: none; }
+    0% { background-color: #fff; border-color: #ccc; }
+    50% { background-color: #f0ad4e; border-color: #eea236; }
+    100% { background-color: #fff; border-color: #ccc; }
 }
+
 
 .flash {
   -moz-animation: flash-orange 1s infinite;
@@ -69,33 +76,29 @@
   animation: flash-orange 1s infinite;
 }
 
-@-ms-keyframes flash-blue {
-    0% { background-color: none; color: #333; }
-    50% { background-color: #2e6da4; color: white; }
-    100% { background-color: none; color: #333; }
+.flash-next {
+    -moz-animation: flash-orange 2s infinite;
+    -webkit-animation: flash-orange 2s infinite;
+    -ms-animation: flash-orange 2s infinite;
+    animation: flash-orange 2s infinite;
+    color: #333;
 }
 
-@-moz-keyframes flash-blue {
-    0% { background-color: none; color: #333; }
-    50% { background-color: #2e6da4; color: white; }
-    100% { background-color: none; color: #333; }
+.btn-step[disabled],
+.btn-step[disabled]:hover,
+.btn-step[disabled]:active,
+.btn-step[disabled]:focus {
+    opacity: 1;
+    color: #adadad;
+    background-color: #fff;
+    border-color: #ccc;
 }
 
-@-webkit-keyframes flash-blue {
-    0% { background-color: none; color: #333; }
-    50% { background-color: #2e6da4; color: white; }
-    100% { background-color: none; color: #333; }
+.form-group .error-block {
+    display: none;
+    color: #a94442;
 }
 
-.flash-blue {
-  -moz-animation: flash-blue 2s infinite;
-  -webkit-animation: flash-blue 2s infinite;
-  -ms-animation: flash-blue 2s infinite;
-  animation: flash-blue 2s infinite;    
-}
-
-.btn-success {
-    color: #3c763d;
-    background-color: #dff0d8;
-    border-color: #d6e9c6;
+.form-group.has-error .error-block {
+    display: block;
 }
