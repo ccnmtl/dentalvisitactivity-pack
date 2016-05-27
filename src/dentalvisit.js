@@ -225,7 +225,7 @@ DentalVisitApp.Views.CounselingSessionView = Backbone.View.extend({
 DentalVisitApp.Views.ReferralView = Backbone.View.extend({
     events: {
         'click .btn-refer': 'onRefer'
-    },    
+    },
     initialize: function(options) {
         _.bindAll(this, 'render', 'onRefer');
 
@@ -257,6 +257,7 @@ DentalVisitApp.Views.ReferralView = Backbone.View.extend({
 
         if (valid) {
             DentalVisitApp.inst.router.enableNext();
+            this.$el.find('.alert-success').show();
         }
 
         return false;
