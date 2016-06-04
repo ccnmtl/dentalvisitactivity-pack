@@ -1,8 +1,10 @@
+/* global describe: true, beforeEach: true, it: true */
+
 var assert = require('chai').assert;
 
 var module = require('../src/dentalvisit');
 
-describe('CounselingSessionList', function () {
+describe('CounselingSessionList', function() {
     var app = module.DentalVisitApp;
     var list = null;
 
@@ -29,3 +31,4 @@ describe('CounselingSessionList', function () {
             'Provide explanation about the follow up office visit');
     });
 });
+
