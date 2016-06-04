@@ -31,7 +31,7 @@ var DentalVisitApp = {
         var view = new DentalVisitApp.Views.CounselingSessionView({
             el: page,
             session: this.inst.sessions.get(1),
-            chart: this.inst.chartView.chart
+            chartView: this.inst.chartView
         });
         views.push(view);
 
@@ -41,14 +41,17 @@ var DentalVisitApp = {
         view = new DentalVisitApp.Views.CounselingSessionView({
             el: page,
             session: this.inst.sessions.get(2),
-            chart: this.inst.chartView.chart
+            chartView: this.inst.chartView
         });
         views.push(view);
 
         // Step 3
         page = jQuery('<div></div>');
         $parent.append(page);
-        view = new DentalVisitApp.Views.ReferralView({el: page});
+        view = new DentalVisitApp.Views.ReferralView({
+            el: page,
+            chartView: this.inst.chartView
+        });
         views.push(view);
 
         // Step 4
@@ -154,7 +157,7 @@ DentalVisitApp.Views.CounselingSessionView = Backbone.View.extend({
         this.state.bind('change:countdown', this.renderCountdown);
 
         this.session = options.session;
-        this.chart = options.chart;
+        this.chartView = options.chartView;
     },
     render: function() {
         // Only invoked once when the session model is instantiated
@@ -162,6 +165,8 @@ DentalVisitApp.Views.CounselingSessionView = Backbone.View.extend({
         this.$el.show();
         this.renderTime(); // explicit
         this.renderState(); // explicit
+
+        this.chartView.render();
     },
     renderState: function() {
         var availableTime = this.session.get('available_time') -
@@ -265,7 +270,7 @@ DentalVisitApp.Views.CounselingSessionView = Backbone.View.extend({
 
         var dataId = jQuery(parent).data('id');
         var topic = this.session.get('topics').get(dataId);
-        this.chart.add(topic);
+        this.chartView.chart.add(topic);
 
         if (this.state.get('complete')) {
             this.trigger('complete', this);
@@ -283,11 +288,13 @@ DentalVisitApp.Views.ReferralView = Backbone.View.extend({
         this.template = require('../static/templates/referral-template.html');
         this.referral = new DentalVisitApp.Models.Referral();
         this.referral.bind('change:complete', this.render);
+        this.chartView = options.chartView;
     },
     render: function() {
         var markup = this.template({'referral': this.referral.toJSON()});
         this.$el.html(markup);
         this.$el.show();
+        this.chartView.render();
     },
     onRefer: function(evt) {
         evt.preventDefault();
