@@ -3,6 +3,7 @@
 jQuery = require('jquery');
 var Backbone = require('backbone');
 var _ = require('underscore');
+var NumberedStepsView = require('./steps.js');
 
 // load json data
 var sessions = require('../static/json/counselingSessions.json');
@@ -10,13 +11,58 @@ var sessions = require('../static/json/counselingSessions.json');
 var DentalVisitApp = {
     Models: {},
     Views: {},
-    Router: {},
     inst: {},
 
     initialize: function(options) {
-        if (!this.inst.hasOwnProperty('router')) {
-            this.inst.router = new DentalVisitApp.Router();
-        }
+        var $parent = jQuery('.counseling-session');
+
+        this.inst.sessions =
+            new DentalVisitApp.Models.CounselingSessionList(sessions);
+
+        this.inst.chartView = new DentalVisitApp.Views.PatientChartView({
+            el: $parent
+        });
+
+        var views = [];
+
+        // Step 1
+        var page = jQuery('<div></div>');
+        $parent.append(page);
+        var view = new DentalVisitApp.Views.CounselingSessionView({
+            el: page,
+            session: this.inst.sessions.get(1),
+            chart: this.inst.chartView.chart
+        });
+        views.push(view);
+
+        // Step 2
+        page = jQuery('<div></div>');
+        $parent.append(page);
+        view = new DentalVisitApp.Views.CounselingSessionView({
+            el: page,
+            session: this.inst.sessions.get(2),
+            chart: this.inst.chartView.chart
+        });
+        views.push(view);
+
+        // Step 3
+        page = jQuery('<div></div>');
+        $parent.append(page);
+        view = new DentalVisitApp.Views.ReferralView({el: page});
+        views.push(view);
+
+        // Step 4
+        page = jQuery('<div></div>');
+        $parent.append(page);
+        view = new DentalVisitApp.Views.ReferralVisitView({el: page});
+        views.push(view);
+
+        this.inst.steps = new NumberedStepsView({
+            el: jQuery('.steps'),
+            views: views
+        });
+
+        jQuery('body').show();
     }
 };
 
@@ -47,7 +93,19 @@ DentalVisitApp.Models.CounselingSessionList = Backbone.Collection.extend({
 DentalVisitApp.Models.CounselingSessionState = Backbone.Model.extend({
     defaults: {
         elapsed_time: null,
-        countdown: null
+        countdown: null,
+        complete: false
+    }
+});
+
+DentalVisitApp.Models.Referral = Backbone.Model.extend({
+    defaults: {
+        date: null,
+        to: null,
+        from: null,
+        medicalHistory: null,
+        reason: null,
+        complete: false
     }
 });
 
@@ -55,7 +113,7 @@ DentalVisitApp.Views.PatientChartView = Backbone.View.extend({
     initialize: function(options) {
         _.bindAll(this, 'render');
 
-        this.chartTemplate =
+        this.template =
             require('../static/templates/patientchart-template.html');
         this.chart = new DentalVisitApp.Models.DiscussionTopicList();
         this.chart.bind('add', this.render);
@@ -71,8 +129,8 @@ DentalVisitApp.Views.PatientChartView = Backbone.View.extend({
                 .attr('disabled', 'disabled')
                 .html('Discussed');
         }
-        var $elt = jQuery(this.el).find('.patient-chart-text');
-        var markup = this.chartTemplate({'topics': this.chart.toJSON()});
+        var $elt = this.$el.find('.patient-chart-text');
+        var markup = this.template({'topics': this.chart.toJSON()});
         $elt.html(markup);
     }
 });
@@ -130,17 +188,17 @@ DentalVisitApp.Views.CounselingSessionView = Backbone.View.extend({
         // 1. The available time <= 0
         // 2. All topics are discussed
         // 3. Remaining topics estimated_time > available_time
-        var $overlay = jQuery(this.el).find('.complete-overlay');
+        var $status = this.$el.find('.time_remaining');
         if (availableTime <= 0 || enabled === 0) {
             // The Activity Is Complete
             if (availableTime > 0 && enabled === 0) {
-                $overlay.find('h1').html('You\'ve completed your session!');
+                $status.html('Session Complete');
+                $status.addClass('alert-success');
             } else {
-                $overlay.find('h1').html('You\'ve run out of time!');
+                $status.html('Out of Time!');
+                $status.addClass('alert-danger');
             }
-            $overlay.show();
-        } else {
-            $overlay.hide();
+            this.state.set('complete', true);
         }
     },
     renderCountdown: function() {
@@ -187,7 +245,7 @@ DentalVisitApp.Views.CounselingSessionView = Backbone.View.extend({
         jQuery(parent).addClass('selected');
         jQuery(parent).find('.panel-collapse').addClass('in');
 
-        jQuery(this.el).find('.display_time').addClass('flash');
+        this.$el.find('.display_time').addClass('flash');
         jQuery(parent).find('.btn.complete')
            .attr('disabled', 'disabled').addClass('flash');
 
@@ -208,62 +266,67 @@ DentalVisitApp.Views.CounselingSessionView = Backbone.View.extend({
         var dataId = jQuery(parent).data('id');
         var topic = this.session.get('topics').get(dataId);
         this.chart.add(topic);
+
+        if (this.state.get('complete')) {
+            this.trigger('complete', this);
+        }
     }
 });
 
-DentalVisitApp.Router = Backbone.Router.extend({
-    routes: {
-        '': 'initial',
-        'initial': 'initial',
-        'followup': 'followup',
-        'referral': 'referral'
+DentalVisitApp.Views.ReferralView = Backbone.View.extend({
+    events: {
+        'click .btn-refer': 'onRefer'
     },
     initialize: function(options) {
-        this.sessions =
-            new DentalVisitApp.Models.CounselingSessionList(sessions);
+        _.bindAll(this, 'render', 'onRefer');
 
-        this.$parent = jQuery('.counseling-session');
-
-        this.chartView = new DentalVisitApp.Views.PatientChartView({
-            el: this.$parent
-        });
-
-        var page = jQuery('<div></div>');
-        this.$parent.append(page);
-        this.initialView = new DentalVisitApp.Views.CounselingSessionView({
-            el: page,
-            session: this.sessions.get(1),
-            chart: this.chartView.chart
-        });
-
-        page = jQuery('<div></div>');
-        this.$parent.append(page);
-        this.followupView = new DentalVisitApp.Views.CounselingSessionView({
-            el: page,
-            session: this.sessions.get(2),
-            chart: this.chartView.chart
-        });
-
-        //this.referralView = new DentalVisitApp.Views.ReferralView({
-        //    el: jQuery('div.counseling-session')
-        //});
+        this.template = require('../static/templates/referral-template.html');
+        this.referral = new DentalVisitApp.Models.Referral();
+        this.referral.bind('change:complete', this.render);
     },
-    turnPage: function(newView) {
-        if (this.currentPage) {
-            jQuery(this.currentPage.el).hide();
+    render: function() {
+        var markup = this.template({'referral': this.referral.toJSON()});
+        this.$el.html(markup);
+        this.$el.show();
+    },
+    onRefer: function(evt) {
+        evt.preventDefault();
+
+        this.$el.find('.form-group').removeClass('has-error');
+
+        var valid = true;
+        var self = this;
+        // validate fields are not empty
+        this.$el.find('input,textarea').each(function() {
+            if (jQuery(this).val() === '') {
+                jQuery(this).parents('.form-group').addClass('has-error');
+                valid = false;
+            } else {
+                self.referral.set(
+                    jQuery(this).attr('name'), jQuery(this).val());
+            }
+        });
+
+        if (valid) {
+            this.referral.set('complete', true);
+            this.trigger('complete', this);
         }
-        this.currentPage = newView;
-        newView.render();
-        this.chartView.render();
+
+        return false;
+    }
+});
+
+DentalVisitApp.Views.ReferralVisitView = Backbone.View.extend({
+    initialize: function(options) {
+        _.bindAll(this, 'render');
+
+        this.template = require(
+            '../static/templates/referral-visit-template.html');
     },
-    initial: function() {
-        this.turnPage(this.initialView);
-    },
-    followup: function() {
-        this.turnPage(this.followupView);
-    },
-    referral: function() {
-        //this.turnPage(this.referralView);
+    render: function() {
+        this.$el.html(this.template({}));
+        this.$el.show();
+        this.trigger('complete', this);
     }
 });
 
