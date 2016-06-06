@@ -7,7 +7,7 @@
     "serve": "webpack-dev-server --hot --inline --open",
     "test": "npm run test-unit && npm run test-client",
     "test-unit": "mocha test/model-test.js",
-    "test-client": "mocha-phantomjs test/view-test.html",
+    "test-client": "mocha-phantomjs -R nyan test/view-test.html",
     "build": "webpack && webpack --config test/test.webpack.config.js"
   },
   "repository": {

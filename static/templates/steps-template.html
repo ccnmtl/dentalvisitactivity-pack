@@ -1,6 +1,6 @@
 <% var nextIdx = current + 1; %>
 <% for (var i = 0; i < steps.length; i++) { %>
-    <a href="#<%=numbers[i]%>" data-idx='<%=i%>'
+    <a href="#<%=numbers[i+1]%>" data-idx='<%=i%>'
         <% if (i === current) { %>
             class="btn btn-arrow-right btn-step btn-primary"
         <% } else if (i === nextIdx && steps[current].complete && !steps[i].complete) { %>
