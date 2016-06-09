@@ -9,6 +9,8 @@ module.exports = {
         loaders: [
             {test: /\.html$/, loader: "underscore-template-loader"},
             {test: /\.css$/, loader: 'style!css!'},
+            {test: /\.png$/, loader: "url-loader?mimetype=image/png"},
+            {test: /\.jpg$/, loader: "url-loader?mimetype=image/jpg"},
             {test: /\.json/, loader: 'json-loader'}, {
                 test: /\.woff(2)?(\?v=\d+\.\d+\.\d+)?$/,
                 loader: "url?limit=10000&mimetype=application/font-woff&name=./dist/[hash].[ext]"
