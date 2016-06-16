@@ -1,5 +1,8 @@
 /* global jQuery: true */
 
+require('!file?name=[name].[ext]!../static/index.html');
+require('!file?name=[name].[ext]!../static/img/ctl-logo.png');
+
 // load and apply css
 require('../node_modules/bootstrap/dist/css/bootstrap.min.css');
 require('../node_modules/bootstrap-arrow-buttons/dist/' +

@@ -17,10 +17,24 @@ Highlight non-dental professions that can impact children’s oral health
 Suggest ways pediatric dentists can partner with them most effectively to enhance practice success
 Present examples of successful pediatric dentists who enhance their patient care through partnerships with these professions
 
-EMBEDDING
-------------
-
-
 REQUIREMENTS
 ------------
 npm
+
+DEV INSTALLATION
+------------
+1. Clone the repository
+2. Type make runserver. This command will install the necessary npm modules, build the bundle and spin up Webpack's dev server.
+3. Navigate to http://localhost:8080.
+4. Play around with the interactive!
+
+NPM INSTALLATION
+------------
+1. npm install dentalvisitactivity-pack
+2. ./node_modules/webpack/webpack.js --output-path <output_path> --config ./node_modules/dentalvisitactivity-pack/webpack.config.js
+3. Embed the interactive via an iframe.
+
+```
+<code>
+    <iframe src="<server>/<output_path>/index.html"></iframe>
+</code>
