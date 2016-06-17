@@ -1,13 +1,15 @@
+OUTPUT_PATH=dist
+
 all: clean build test jshint jscs
 
 clean:
-	rm -rf dist
+	rm -rf $(OUTPUT_PATH)
 
 build: node_modules/webpack/bin/webpack
-	./node_modules/webpack/bin/webpack.js 
+	./node_modules/webpack/bin/webpack.js --output-path $(OUTPUT_PATH)
 
 build-test: node_modules/webpack/bin/webpack
-	./node_modules/webpack/bin/webpack.js --config test/test.webpack.config.js
+	./node_modules/webpack/bin/webpack.js --config test/test.webpack.config.js --output-path $(OUTPUT_PATH)
 
 test: build build-test
 	npm test
