@@ -1,13 +1,14 @@
 OUTPUT_PATH=dist
+JS_FILES=src test
+
+all: clean test jshint jscs
 
 include js.mk
-
-all: clean build test jshint jscs
 
 clean:
 	rm -rf $(OUTPUT_PATH)
 
-build: $(JS_SENTINAL)
+build:  $(JS_SENTINAL)
 	./node_modules/webpack/bin/webpack.js --output-path=$(OUTPUT_PATH)
 
 build-test: $(JS_SENTINAL)
@@ -27,4 +28,3 @@ publish: build
 
 runserver: build
 	npm run serve
-
