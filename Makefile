@@ -1,15 +1,18 @@
 OUTPUT_PATH=dist
+JS_FILES=src test
 
-all: clean build test jshint jscs
+all: clean test jshint jscs
+
+include js.mk
 
 clean:
 	rm -rf $(OUTPUT_PATH)
 
-build: node_modules/webpack/bin/webpack
-	./node_modules/webpack/bin/webpack.js --output-path $(OUTPUT_PATH)
+build:  $(JS_SENTINAL)
+	./node_modules/webpack/bin/webpack.js --output-path=$(OUTPUT_PATH)
 
-build-test: node_modules/webpack/bin/webpack
-	./node_modules/webpack/bin/webpack.js --config test/test.webpack.config.js --output-path $(OUTPUT_PATH)
+build-test: $(JS_SENTINAL)
+	./node_modules/webpack/bin/webpack.js --config test/test.webpack.config.js --output-path=$(OUTPUT_PATH)
 
 test: build build-test
 	npm test
@@ -25,18 +28,3 @@ publish: build
 
 runserver: build
 	npm run serve
-
-jshint: node_modules/jshint/bin/jshint
-	./node_modules/jshint/bin/jshint --config=.jshintrc src test
-
-jscs: node_modules/jscs/bin/jscs
-	./node_modules/jscs/bin/jscs src test
-
-node_modules/jshint/bin/jshint: build
-	npm install jshint --prefix .
-
-node_modules/jscs/bin/jscs: build
-	npm install jscs --prefix .
-
-node_modules/webpack/bin/webpack:
-	npm install
