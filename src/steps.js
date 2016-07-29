@@ -31,7 +31,7 @@ module.exports = Backbone.View.extend({
     numbers: ['', 'one', 'two', 'three', 'four',
               'five', 'six', 'seven', 'eight', 'nine'],
     initialize: function(options) {
-        _.bindAll(this, 'render', 'maybeEnableNext',
+        _.bindAll(this, 'render', 'maybeEnableNext', 'beforeUnload',
                   'onComplete', 'onPrint', 'onStep');
         this.template = require('../static/templates/steps-template.html');
         this.steps = new StepCollection();
@@ -47,6 +47,15 @@ module.exports = Backbone.View.extend({
         this.currentStep = new CurrentStep();
         this.currentStep.bind('change', this.render);
         this.currentStep.set('idx', 0);
+
+        jQuery(window).on('beforeunload', this.beforeUnload);
+    },
+    beforeUnload: function() {
+        var finalIdx = this.steps.length - 1;
+        if (!this.steps.at(finalIdx).get('complete')) {
+            return 'The activity is not complete. ' +
+                'Your progress will not be saved if you leave this page.';
+        }
     },
     render: function() {
         var idx = this.currentStep.get('idx');
