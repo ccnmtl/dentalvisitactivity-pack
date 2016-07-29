@@ -1,6 +1,6 @@
 {
   "name": "dentalvisitactivity-pack",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Interactive to recreate a pediatric dental visit",
   "main": "src/index.js",
   "scripts": {
