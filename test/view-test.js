@@ -54,7 +54,7 @@ describe('CounselingSessionApp', function() {
             assert.equal(jQuery('.btn-step').length, 4);
             assert.equal(jQuery('.btn-print').length, 1);
 
-            assert.equal(jQuery('h4.step-1:visible').length, 1);
+            assert.equal(jQuery('h3.step-1:visible').length, 1);
             assert.isTrue(
                 jQuery('a[href="#one"]').hasClass('btn-primary'));
             assert.equal(
@@ -97,7 +97,7 @@ describe('CounselingSessionApp', function() {
             assert.isFalse($btn2.hasClass('btn-info'), 'Step2 is primary');
             assert.isTrue($btn2.hasClass('btn-primary'), 'Step2 is primary');
 
-            assert.equal(jQuery('h4.step-2:visible').length, 1);
+            assert.equal(jQuery('h3.step-2:visible').length, 1);
         });
 
         it('step 2: open discussion', function(done) {
@@ -125,7 +125,7 @@ describe('CounselingSessionApp', function() {
             assert.isFalse($btn3.hasClass('btn-info'), 'Step3 is primary');
             assert.isTrue($btn3.hasClass('btn-primary'), 'Step3 is primary');
 
-            assert.equal(jQuery('h4.step-3:visible').length, 1);
+            assert.equal(jQuery('h3.step-3:visible').length, 1);
         });
 
         it('step 3: fill out form', function() {
@@ -160,7 +160,7 @@ describe('CounselingSessionApp', function() {
             assert.isFalse($btn4.hasClass('btn-info'), 'Step4 is primary');
             assert.isTrue($btn4.hasClass('btn-primary'), 'Step4 is primary');
 
-            assert.equal(jQuery('h4.step-4:visible').length, 1);
+            assert.equal(jQuery('h3.step-4:visible').length, 1);
         });
     });
 });
