@@ -1,21 +1,15 @@
-<div class="row">
-    <div class="col-md-12">
-        <h4 class="step-<%=id%>"><%= title %></h4>
+<div class="row info-header">
+    <div class="col-xs-12">
+        <h3 class="step-<%=id%>"><%= title %></h3>
         <div class="instructions"><%= instructions %></div>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-3">
-        <div class="available_time center-block">
-            <div class="alert time_remaining" role="alert">Time Remaining</div>
-            <div class="display_time"><span class="display_time_text"></span></div>
-            <div class="time_minutes">minutes</div>
-        </div>
-        <div class="patient-chart center-block">
-             <div class="patient-chart-text"></div>
-        </div>
-    </div>
-    <div class="col-md-9">
+
+<div class="row row-nopadding counseling-session-container">
+ <div class="col-xs-12">
+    <div class="time-status" style="display: none;"></div>
+ </div>
+ <div class="col-xs-8">
         <div class="panel-group">
             <% for (var i = 0; i < topics.models.length; i++) {%>
                 <% var topic = topics.models[i] %> 
@@ -41,6 +35,16 @@
                     </div>
                 </div>
             <% } %>
+        </div>
+    </div>
+    <div class="col-xs-4">
+        <div class="available_time center-block">
+            <div class="time_remaining">Time remaining:</div>
+            <div class="display_time"><span class="display_time_text"></span></div>
+            <div class="time_minutes">minutes</div>
+        </div>
+        <div class="patient-chart center-block">
+             <div class="patient-chart-text"></div>
         </div>
     </div>
 </div>

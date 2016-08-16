@@ -1,9 +1,49 @@
+.interactive-container {
+    min-width: 680px;
+}
+
+.activity-completed {
+    display: inline;
+    margin-left: -15px;
+}
+
+.steps {
+    margin: 10px 0 5px 0;
+}
+
 .counseling-session {
-    min-width: 920px;
+    margin-top: 20px;
+}
+
+.info-header {
+    margin: 0 0 10px 0;
+    padding: 0;
+}
+
+.info-header h3 {
+    margin: 0;
+    padding: 0;
+    line-height: 44px;
+    margin-left: -15px;
+    font-size: 20px;
+}
+
+.row-nopadding {
+    margin: 0;
+    padding: 0;
+}
+
+.counseling-session-container {
+    background-color: #e6f2ff;
+    border: 1px solid #b5daff;
+    padding: 8px;
+    -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+    border-radius: 5px;
 }
 
 .counseling-session .instructions {
-    margin-bottom: 20px;
+    margin: 0 -15px 20px -15px;
 }
 
 .counseling-session .alert {
@@ -14,17 +54,52 @@
 }
 
 .counseling-session .available_time {
+    border: 1px solid #999;
     text-align: center;
-    border: 0;
     width: 210px;
     margin-bottom: 5px;
     padding: 0;
-    background: #fff url('../img/icon_stopwatch.jpg') 76px 40px no-repeat;
+    background: #fff url('../img/icon_stopwatch.jpg') 76px 22px no-repeat;
     box-shadow: none;
 }
 
+
+.counseling-session .time-status {
+    filter: alpha(opacity=70); /*older IE*/
+    filter:progid:DXImageTransform.Microsoft.Alpha(opacity=70); /* IE */
+    -moz-opacity: .7; /*older Mozilla*/
+    -khtml-opacity: 0.7;   /*older Safari*/
+    opacity: 0.7;   /*supported by current Mozilla, Safari, and Opera*/
+    color:#fff;
+    text-align: center;
+    padding: 0;
+    margin: 0 -15px 10px -15px;
+    min-height: 50px;
+    vertical-align: middle;
+    display: block;
+}
+
+.counseling-session .time-status.out-of-time {
+    background-color: #cc0000;
+}
+
+.counseling-session .time-status.in-time {
+    background-color: #009900;
+}
+
+.counseling-session .time-status h1 {
+    margin: 0;
+    padding: 5px 0 0 0;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 20px;
+}
+
 .counseling-session  .time_remaining {
-    margin-bottom: 32px;
+    font-weight: bold;
+    height: 24px;
+    line-height: 24px;
+    margin-bottom: 21px
 }
 
 .counseling-session .time_minutes {
@@ -82,7 +157,8 @@
 }
 
 .counseling-session .panel-group {
-    margin-left: 10px;
+    margin-left: -15px;
+    margin-right: -15px;
 }
 
 .counseling-session .panel-default {
@@ -91,8 +167,10 @@
     background-color: #F9F9F9;
 }
 
-.counseling-session .panel-default.selected {
+.counseling-session .panel-default.selected,
+.counseling-session .panel-default.selected:hover {
     border: 2px black solid;
+    background-color: #fff;
 }
 
 .counseling-session .panel-default:hover {
@@ -139,7 +217,7 @@
 
 .counseling-session .referral-form-prescription {
     background: url('../img/bg_prescription.png');
-    width: 500px;
+    max-width: 500px;
     padding: 15px;
     -webkit-box-shadow: 2px 2px 12px rgba(50, 50, 50, 0.75);
     -moz-box-shadow: 2px 2px 12px rgba(50, 50, 50, 0.75);
@@ -159,8 +237,11 @@
     line-height: 12px;
 }
 
+.counseling-session .referral-form-prescription label {
+    text-align: right;
+}
+
 .counseling-session .patient-chart.referral {
-    width: 200px;
     padding: 80px 0 0 0;
     border: 0;
     background: transparent url('../img/clipboard.png') 0 0 no-repeat;
@@ -215,9 +296,21 @@
     text-transform: uppercase;
 }
 
+.counseling-session .find-a-dietician {
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
 .counseling-session .find-a-dietician ol {
     padding-left: 14px;
 } 
 .counseling-session .find-a-dietician ol li {
     margin-bottom: 5px;
+}
+.counseling-session .referral-stamp {
+    width: 131px;
+    height: 37px;
+    background: transparent url('../img/referral-completed.png') 0 0 no-repeat;
+    display: inline-block;
+    float: right;
 }

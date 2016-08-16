@@ -65,7 +65,7 @@ var DentalVisitApp = {
             views: views
         });
 
-        jQuery('body').show();
+        jQuery('.interactive-container').show();
     }
 };
 
@@ -194,13 +194,22 @@ DentalVisitApp.Views.CounselingSessionView = Backbone.View.extend({
         // 2. All topics are discussed
         // 3. Remaining topics estimated_time > available_time
         var $status = this.$el.find('.time_remaining');
+        var $statusalert = this.$el.find('.time-status');
         if (availableTime <= 0 || enabled === 0) {
             // The Activity Is Complete
             if (availableTime > 0 && enabled === 0) {
-                $status.html('Session Complete');
+                $statusalert.show();
+                $statusalert.html('<h1>This session is completed.</h1>'+
+                    'All information was recorded in your patient\'s chart.');
+                $statusalert.addClass('in-time');
+                $status.html('Session completed');
                 $status.addClass('alert-success');
             } else {
-                $status.html('Out of Time!');
+                $statusalert.show();
+                $statusalert.html('<h1>You have run out of time!</h1>'+
+                    'All information was recorded in your patient\'s chart.');
+                $statusalert.addClass('out-of-time');
+                $status.html('Out of time!');
                 $status.addClass('alert-danger');
             }
             this.state.set('complete', true);
