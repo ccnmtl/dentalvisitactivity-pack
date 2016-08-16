@@ -199,14 +199,14 @@ DentalVisitApp.Views.CounselingSessionView = Backbone.View.extend({
             // The Activity Is Complete
             if (availableTime > 0 && enabled === 0) {
                 $statusalert.show();
-                $statusalert.html('<h1>This session is completed.</h1>'+
+                $statusalert.html('<h1>This session is completed.</h1>' +
                     'All information was recorded in your patient\'s chart.');
                 $statusalert.addClass('in-time');
                 $status.html('Session completed');
                 $status.addClass('alert-success');
             } else {
                 $statusalert.show();
-                $statusalert.html('<h1>You have run out of time!</h1>'+
+                $statusalert.html('<h1>You have run out of time!</h1>' +
                     'All information was recorded in your patient\'s chart.');
                 $statusalert.addClass('out-of-time');
                 $status.html('Out of time!');
