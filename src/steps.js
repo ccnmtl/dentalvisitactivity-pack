@@ -62,7 +62,8 @@ module.exports = Backbone.View.extend({
         var markup = this.template({
             'current': idx,
             'steps': this.steps.toJSON(),
-            'numbers': this.numbers});
+            'numbers': this.numbers,
+            'done': this.isDone()});
         this.$el.html(markup);
 
         for (var i = 0; i < this.steps.length; i++) {
@@ -102,5 +103,13 @@ module.exports = Backbone.View.extend({
         if (this.currentStep.get('idx') !== nextIdx) {
             this.currentStep.set('idx', nextIdx);
         }
+    },
+    isDone: function() {
+        for (var i = 0; i < this.steps.length; i++) {
+            if (!this.steps.at(i).get('complete')) {
+                return false;
+            }
+        }
+        return true;
     }
 });

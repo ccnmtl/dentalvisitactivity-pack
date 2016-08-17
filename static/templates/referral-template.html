@@ -1,13 +1,12 @@
-<div class="row">
-    <div class="col-md-12">
-        <h4 class="step-3">3. Dietitian Referral</h4>
-        <div class="instructions">
-            <p>Nick returns to you 5 months later with additional tooth pain. Again, you notice he has been snacking on chips and is holding a bottle of green sports drink. Recently, you were speaking to a colleague who has started to refer his patients to a registered dietitian. After determining Nick will require additional restorative treatment, you decide he and his mother may benefit from more extensive nutritional counseling and decide to give the referral a try.</p>
-        </div>
+<div class="row info-header">
+    <div class="col-xs-12">
+        <h3 class="step-3">3. Dietitian Referral</h3>
+        <div class="instructions"><p>Nick returns to you 5 months later with additional tooth pain. Again, you notice he has been snacking on chips and is holding a bottle of green sports drink. Recently, you were speaking to a colleague who has started to refer his patients to a registered dietitian. After determining Nick will require additional restorative treatment, you decide he and his mother may benefit from more extensive nutritional counseling and decide to give the referral a try.</p></div>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-3">
+
+<div class="row row-nopadding">
+    <div class="col-xs-4">
         <div class="alert alert-success" role="alert" <% if (!referral.complete) { %> style="display:none"<% }%>>
             Referral Complete
         </div>
@@ -26,7 +25,7 @@
              <div class="patient-chart-text"></div>
         </div>
     </div>
-    <div class="col-md-9">
+    <div class="col-xs-8">
         <div class="referral-form">
             <div class="referral-form-prescription">
                 <div class="practice-logo">Pediatric Dental Smiles<br />Referral Form</div>
@@ -40,45 +39,52 @@
                 </div>
                 <form class="form-horizontal">
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">Today's Date:</label>
-                        <div class="col-sm-7">
+                        <label class="col-xs-4 control-label">Today's Date:</label>
+                        <div class="col-xs-8">
                             <div><input type="text" class="form-control" name="theDate"
                                 value="<%=referral.theDate%>"></div>
                             <div class="error-block">This field is required</div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">Referring to:</label>
-                        <div class="col-sm-7">
+                        <label class="col-xs-4 control-label">Referring to:</label>
+                        <div class="col-xs-8">
                             <div><input type="text" class="form-control" name="to"
                                 value="<%=referral.to%>"></div>
                             <div class="error-block">This field is required</div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">Referring dentist:</label>
-                        <div class="col-sm-7">
+                        <label class="col-xs-4 control-label">Referring dentist:</label>
+                        <div class="col-xs-8">
                             <div><input type="text" class="form-control" name="from"
                                 value="<%=referral.from%>"></div>
                             <div class="error-block">This field is required</div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">Reason for referral:</label>
-                        <div class="col-sm-7">
+                        <label class="col-xs-4 control-label">Reason for referral:</label>
+                        <div class="col-xs-8">
                             <textarea class="form-control" name="reason"><%= referral.reason %></textarea>
                             <div class="error-block">This field is required</div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">Medical History:</label>
-                        <div class="col-sm-7">
+                        <label class="col-xs-4 control-label">Medical History:</label>
+                        <div class="col-xs-8">
                             <textarea class="form-control" name="medicalHistory"><%= referral.medicalHistory %></textarea>
                             <div class="error-block">This field is required</div>
                         </div>
                     </div>
                     <br />
-                    <div><button type="submit" class="btn btn-info btn-refer pull-right">Refer</button></div>
+                    <div>
+                    <% if (referral.complete) { %>
+                    <div class="referral-stamp"></div>
+                    <% }%>
+                    <% if (!referral.complete) { %>
+                    <button type="submit" class="btn btn-info btn-refer pull-right">Refer</button>
+                    <% }%>
+                    </div>
                     <div class="clearfix"></div>
                 </form>
             </div>

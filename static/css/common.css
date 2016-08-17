@@ -1,45 +1,59 @@
-.titlebar {
-    border-bottom: 1px solid #e5e5e5;
-    padding: 10px 0;
+header {
+    border-bottom: 1px solid #ccc;
+    padding: 5px;
 }
 
 .interactive-module-title {
-    margin-top: 0px;
-    margin-bottom: 0px;
+    margin: 0;
+    padding: 0;
+    font-size: 24px;
 }
 
-.footer {
-    color: #fff;
+.btn-print {
+    background-color: #ddd;
+}
+
+.activity-complete {
+    margin: 0;
+}
+
+.done {
+    margin-right: 5px;
+    cursor: auto;
+}
+
+hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-top: 1px dashed #ccc;
+}
+
+/* Footer------------------------------------------------------------------ */
+
+footer {
     background: #efefef;
-    padding-top: 10px;
-    height: 50px;
     font-size: 12px;
     margin-top: 30px;
+    padding: 10px 0;
 }
 
-.footer ul {
-    float: right;
+.footer-moreinfo,
+.footer-logos {
     list-style: none;
-    margin-left: 5px;
-    padding-left: 5px;
+    margin: 0;
+    padding: 0;
+    line-height: 30px;
+    text-align: center;
 }
 
-.footer ul li {
-    float: left;
-    margin-right: 20px;
+.footer-moreinfo li,
+.footer-logos li {
+    display: inline-block;
+    padding: 0 10px;
 }
 
-.footer ul li a {
-    color: #337ab7;
-}
-
-.ctl-logo {
+.footer-logos img {
     height: 30px;
-    margin-left: 20px;
-}
-
-.dental-logo {
-    height: 41px;
 }
 
 .printonly {

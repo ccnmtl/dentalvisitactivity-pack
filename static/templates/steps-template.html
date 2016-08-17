@@ -14,6 +14,12 @@
     >Step <%=i + 1%></a>
 <% } %>
 
-<a href="#" class="btn btn-default btn-print">
+<div class="activity-completed" <% if (!done) { %>style="display: none"<% } %>>
+    <div class="btn btn-success done" style="padding-left: 30px;">
+        <span class="glyphicon glyphicon-ok"></span>
+        Activity Complete
+    </div>
+    <a href="#" class="btn btn-default btn-print">
     <span class="glyphicon glyphicon-print"></span>
-</a>
+    </a>
+</div>
