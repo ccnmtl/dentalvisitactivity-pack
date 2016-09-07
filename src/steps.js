@@ -22,6 +22,19 @@ var CurrentStep = Backbone.Model.extend({
     }
 });
 
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1));
+    var sURLVariables = sPageURL.split('&');
+
+    for (var i = 0; i < sURLVariables.length; i++) {
+        var sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
+};
+
 module.exports = Backbone.View.extend({
     events: {
         'click a[disabled="disabled"]': 'onDisabled',
@@ -48,7 +61,10 @@ module.exports = Backbone.View.extend({
         this.currentStep.bind('change', this.render);
         this.currentStep.set('idx', 0);
 
-        jQuery(window).on('beforeunload', this.beforeUnload);
+        var quiet = getUrlParameter('quiet') === '1';
+        if (!quiet) {
+            jQuery(window).on('beforeunload', this.beforeUnload);
+        }
     },
     beforeUnload: function() {
         var finalIdx = this.steps.length - 1;
