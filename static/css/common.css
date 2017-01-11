@@ -31,10 +31,10 @@ hr {
 /* Footer------------------------------------------------------------------ */
 
 footer {
-    background: #efefef;
+    background: transparent;
     font-size: 12px;
     margin-top: 30px;
-    padding: 10px 0;
+    padding: 0;
 }
 
 .footer-moreinfo,
@@ -52,8 +52,16 @@ footer {
     padding: 0 10px;
 }
 
+.footer-logos li {
+    padding: 10px 20px 0 20px;
+}
+
 .footer-logos img {
     height: 30px;
+}
+
+.footer-moreinfo {
+    background-color: #e0e0e0;
 }
 
 .printonly {
