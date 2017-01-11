@@ -1,6 +1,6 @@
 {
   "name": "dentalvisitactivity-pack",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Interactive to recreate a pediatric dental visit",
   "main": "src/index.js",
   "scripts": {
@@ -41,7 +41,7 @@
   "bugs": {
     "url": "https://github.com/ccnmtl/dentalvisitactivity-pack/issues"
   },
-  "license": "MIT",
+  "license": "GPL-3.0",
   "devDependencies": {
     "chai": "^3.5.0",
     "jscs": "^3.0.4",
