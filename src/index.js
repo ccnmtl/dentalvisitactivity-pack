@@ -1,7 +1,8 @@
 /* global jQuery: true */
 
 require('!file?name=[name].[ext]!../static/index.html');
-require('!file?name=[name].[ext]!../static/img/ctl-logo.png');
+require('!file?name=[name].[ext]!../static/img/logo-cdm.png');
+require('!file?name=[name].[ext]!../static/img/logo-ctl.png');
 
 // load and apply css
 require('!style!css!bootstrap/dist/css/bootstrap.min.css');
