@@ -34,9 +34,9 @@ var DentalVisitApp = {
         views.push(view);
 
         // Step 2
-        var page = jQuery('<div></div>');
+        page = jQuery('<div></div>');
         $parent.append(page);
-        var view = new DentalVisitApp.Views.CounselingSessionView({
+        view = new DentalVisitApp.Views.CounselingSessionView({
             el: page,
             session: this.inst.sessions.get(1),
             chartView: this.inst.chartView
