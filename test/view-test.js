@@ -49,55 +49,44 @@ describe('CounselingSessionApp', function() {
         app = module.DentalVisitApp.initialize();
     });
 
-    describe('step1 interaction', function() {
+    describe('interaction', function() {
         it('step 1: initialized', function() {
-            assert.equal(jQuery('.btn-step').length, 4);
+            assert.equal(jQuery('.btn-step').length, 5);
             assert.equal(jQuery('.btn-print').length, 1);
 
             assert.equal(jQuery('h3.step-1:visible').length, 1);
             assert.isTrue(
                 jQuery('a[href="#one"]').hasClass('btn-primary'));
-            assert.equal(
-                jQuery('a[href="#two"]').attr('disabled'), 'disabled');
+            assert.isTrue(
+                jQuery('a[href="#two"]').hasClass('flash-next'));
             assert.equal(
                 jQuery('a[href="#three"]').attr('disabled'), 'disabled');
             assert.equal(
                 jQuery('a[href="#four"]').attr('disabled'), 'disabled');
+            assert.equal(
+                jQuery('a[href="#five"]').attr('disabled'), 'disabled');
+
+            var $elt = jQuery('a[href="#two"]').not('[disabled="disabled"]');
+            $elt.click();
+        });
+
+        it('step 2: initialized', function() {
+            assert.equal(jQuery('h3.step-2:visible').length, 1);
+            assert.isFalse(
+                jQuery('a[href="#one"]').hasClass('btn-primary'));
+            assert.isTrue(
+                jQuery('a[href="#two"]').hasClass('btn-primary'));
+            assert.equal(
+                jQuery('a[href="#three"]').attr('disabled'), 'disabled');
+            assert.equal(
+                jQuery('a[href="#four"]').attr('disabled'), 'disabled');
+            assert.equal(
+                jQuery('a[href="#five"]').attr('disabled'), 'disabled');
 
             assert(jQuery('.available_time').is(':visible'));
             assert(jQuery('.patient-chart').is(':visible'));
 
             assert.equal(jQuery('.panel').length, 9);
-        });
-
-        it('step 1: open discussion', function(done) {
-            this.timeout(6000);
-            openDiscussion(done);
-        });
-
-        it('step 1: close discussion', function() {
-            closeDiscussion();
-
-            var $elt = jQuery('a[href="#two"]').not('[disabled="disabled"]');
-            assert.isTrue($elt.length > 0, 'Active Step 2 button exists');
-            assert.isTrue($elt.hasClass('flash-next'), 'Step 2 is blinking');
-
-            assert(jQuery('.patient-chart-text').html().length > 0);
-
-            // move on to step 2
-            $elt.click();
-        });
-
-        it('step 2: initialized', function() {
-            var $btn1 = jQuery('a[href="#one"]');
-            assert.isFalse($btn1.hasClass('btn-primary'), 'Step2 is primary');
-
-            var $btn2 = jQuery('a[href="#two"]');
-            assert.isFalse($btn2.hasClass('flash-next'), 'Step2 not blinking');
-            assert.isFalse($btn2.hasClass('btn-info'), 'Step2 is primary');
-            assert.isTrue($btn2.hasClass('btn-primary'), 'Step2 is primary');
-
-            assert.equal(jQuery('h3.step-2:visible').length, 1);
         });
 
         it('step 2: open discussion', function(done) {
@@ -112,23 +101,52 @@ describe('CounselingSessionApp', function() {
             assert.isTrue($elt.length > 0, 'Active Step 3 button exists');
             assert.isTrue($elt.hasClass('flash-next'), 'Step 3 is blinking');
 
+            assert(jQuery('.patient-chart-text').html().length > 0);
+
             // move on to step 3
             $elt.click();
         });
-
         it('step 3: initialized', function() {
-            var $btn2 = jQuery('a[href="#two"]');
-            assert.isFalse($btn2.hasClass('btn-primary'), 'Step3 is primary');
+            var $btn = jQuery('a[href="#two"]');
+            assert.isFalse($btn.hasClass('btn-primary'), 'Step3 is primary');
 
-            var $btn3 = jQuery('a[href="#three"]');
-            assert.isFalse($btn3.hasClass('flash-next'), 'Step3 not blinking');
-            assert.isFalse($btn3.hasClass('btn-info'), 'Step3 is primary');
-            assert.isTrue($btn3.hasClass('btn-primary'), 'Step3 is primary');
+            $btn = jQuery('a[href="#three"]');
+            assert.isFalse($btn.hasClass('flash-next'), 'Step3 not blinking');
+            assert.isFalse($btn.hasClass('btn-info'), 'Step3 is primary');
+            assert.isTrue($btn.hasClass('btn-primary'), 'Step3 is primary');
 
             assert.equal(jQuery('h3.step-3:visible').length, 1);
         });
 
-        it('step 3: fill out form', function() {
+        it('step 3: open discussion', function(done) {
+            this.timeout(6000);
+            openDiscussion(done);
+        });
+
+        it('step 3: close discussion', function() {
+            closeDiscussion();
+
+            var $elt = jQuery('a[href="#four"]').not('[disabled="disabled"]');
+            assert.isTrue($elt.length > 0, 'Active Step 4 button exists');
+            assert.isTrue($elt.hasClass('flash-next'), 'Step 4 is blinking');
+
+            // move on to step 3
+            $elt.click();
+        });
+
+        it('step 4: initialized', function() {
+            var $btn = jQuery('a[href="#three"]');
+            assert.isFalse($btn.hasClass('btn-primary'), 'Step4 is primary');
+
+            $btn = jQuery('a[href="#four"]');
+            assert.isFalse($btn.hasClass('flash-next'), 'Step4 not blinking');
+            assert.isFalse($btn.hasClass('btn-info'), 'Step4 is primary');
+            assert.isTrue($btn.hasClass('btn-primary'), 'Step4 is primary');
+
+            assert.equal(jQuery('h3.step-4:visible').length, 1);
+        });
+
+        it('step 4: fill out form', function() {
             var $elt = jQuery('.btn-refer');
             $elt.click();
             assert.equal(jQuery('.has-error').length, 5, 'Required fields');
@@ -143,24 +161,24 @@ describe('CounselingSessionApp', function() {
             assert.equal(jQuery('.has-error').length, 0, 'Required fields');
             assert.isTrue(jQuery('.alert-success').is(':visible'));
 
-            $elt = jQuery('a[href="#four"]').not('[disabled="disabled"]');
-            assert.isTrue($elt.length > 0, 'Active Step 4 button exists');
-            assert.isTrue($elt.hasClass('flash-next'), 'Step 4 is blinking');
+            $elt = jQuery('a[href="#five"]').not('[disabled="disabled"]');
+            assert.isTrue($elt.length > 0, 'Active Step 5 button exists');
+            assert.isTrue($elt.hasClass('flash-next'), 'Step 5 is blinking');
 
-            // move on to step 4
+            // move on to step 5
             $elt.click();
         });
 
-        it('step 4: initialized', function() {
-            var $btn3 = jQuery('a[href="#three"]');
-            assert.isFalse($btn3.hasClass('btn-primary'), 'Step4 is primary');
+        it('step 5: initialized', function() {
+            var $btn = jQuery('a[href="#four"]');
+            assert.isFalse($btn.hasClass('btn-primary'), 'Step5 is primary');
 
-            var $btn4 = jQuery('a[href="#four"]');
-            assert.isFalse($btn4.hasClass('flash-next'), 'Step4 not blinking');
-            assert.isFalse($btn4.hasClass('btn-info'), 'Step4 is primary');
-            assert.isTrue($btn4.hasClass('btn-primary'), 'Step4 is primary');
+            $btn = jQuery('a[href="#five"]');
+            assert.isFalse($btn.hasClass('flash-next'), 'Step5 not blinking');
+            assert.isFalse($btn.hasClass('btn-info'), 'Step5 is primary');
+            assert.isTrue($btn.hasClass('btn-primary'), 'Step5 is primary');
 
-            assert.equal(jQuery('h3.step-4:visible').length, 1);
+            assert.equal(jQuery('h3.step-5:visible').length, 1);
         });
     });
 });

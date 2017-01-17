@@ -84,7 +84,7 @@
             "id": 7
         }
     ],
-    "title": "Step 1. Initial Visit",
+    "title": "Step 2. Initial Visit",
     "instructions": "<p>The patient arrives early and you have completed your exam, prophy and flouride treatment. You look at the clock and realize you have <b>6 minutes</b> until your next patient and decide to spend some additional time discussing one or more of the options below.</p><p>Each activity is estimated to take a certain amount of time, but just like in real practice, things don't always go as planned. Select how you would use your remaining time with Nick.</p>",
     "id": 1
 },
@@ -164,7 +164,7 @@
             "id": 16
         }
     ],
-    "title": "Step 2. Follow-up Visit",
+    "title": "Step 3. Follow-up Visit",
     "instructions": "<p>Nick returns for restorative treatment. This is his first restorative treatment and both the child and mother are anxious. It is evident to the dentist upon looking in the child’s mouth that he has been eating chips.</p><p>Later... Restorative treatment is complete and you have <b>5 minutes</b> until your next patient is scheduled. What are you going to address?</p>",
     "id": 2
 }

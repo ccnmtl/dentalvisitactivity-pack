@@ -28,14 +28,22 @@ var DentalVisitApp = {
         // Step 1
         var page = jQuery('<div></div>');
         $parent.append(page);
-        var view = new DentalVisitApp.Views.CounselingSessionView({
+        var view = new DentalVisitApp.Views.IntroView({
+            el: page
+        });
+        views.push(view);
+
+        // Step 2
+        page = jQuery('<div></div>');
+        $parent.append(page);
+        view = new DentalVisitApp.Views.CounselingSessionView({
             el: page,
             session: this.inst.sessions.get(1),
             chartView: this.inst.chartView
         });
         views.push(view);
 
-        // Step 2
+        // Step 3
         page = jQuery('<div></div>');
         $parent.append(page);
         view = new DentalVisitApp.Views.CounselingSessionView({
@@ -45,7 +53,7 @@ var DentalVisitApp = {
         });
         views.push(view);
 
-        // Step 3
+        // Step 4
         page = jQuery('<div></div>');
         $parent.append(page);
         view = new DentalVisitApp.Views.ReferralView({
@@ -54,7 +62,7 @@ var DentalVisitApp = {
         });
         views.push(view);
 
-        // Step 4
+        // Step 5
         page = jQuery('<div></div>');
         $parent.append(page);
         view = new DentalVisitApp.Views.ReferralVisitView({el: page});
@@ -109,6 +117,20 @@ DentalVisitApp.Models.Referral = Backbone.Model.extend({
         medicalHistory: null,
         reason: null,
         complete: false
+    }
+});
+
+DentalVisitApp.Views.IntroView = Backbone.View.extend({
+    initialize: function(options) {
+        _.bindAll(this, 'render');
+
+        this.template = require(
+            '../static/templates/intro-template.html');
+    },
+    render: function() {
+        this.$el.html(this.template({}));
+        this.$el.show();
+        this.trigger('complete', this);
     }
 });
 
