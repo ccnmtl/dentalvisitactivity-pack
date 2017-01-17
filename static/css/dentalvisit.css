@@ -314,3 +314,14 @@
     display: inline-block;
     float: right;
 }
+
+
+/* Special fix */
+
+.meet-nick-intro {
+    width: 300px;
+    height: 200px;
+    background-image: url('../img/meet_nick.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+}
