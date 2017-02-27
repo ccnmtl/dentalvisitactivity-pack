@@ -1,16 +1,16 @@
 /* global jQuery: true */
 
-require('!file?name=[name].[ext]!../static/index.html');
-require('!file?name=[name].[ext]!../static/img/logo-cdm.png');
-require('!file?name=[name].[ext]!../static/img/logo-ctl.png');
+require('!file-loader?name=[name].[ext]!../static/index.html');
+require('!file-loader?name=[name].[ext]!../static/img/logo-cdm.png');
+require('!file-loader?name=[name].[ext]!../static/img/logo-ctl.png');
 
 // load and apply css
-require('!style!css!bootstrap/dist/css/bootstrap.min.css');
-require('!style!css!bootstrap-arrow-buttons/dist/css/' +
+require('!style-loader!css-loader!bootstrap/dist/css/bootstrap.min.css');
+require('!style-loader!css-loader!bootstrap-arrow-buttons/dist/css/' +
         'bootstrap-arrow-buttons.css');
-require('../static/css/common.css');
-require('../static/css/steps.css');
-require('../static/css/dentalvisit.css');
+require('!style-loader!css-loader!../static/css/common.css');
+require('!style-loader!css-loader!../static/css/steps.css');
+require('!style-loader!css-loader!../static/css/dentalvisit.css');
 
 var jQuery = require('jquery');
 var module = require('./dentalvisit.js');
