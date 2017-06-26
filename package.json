@@ -64,6 +64,6 @@
     "underscore": "1.4.4 - 1.8.3",
     "underscore-template-loader": "^0.7.3",
     "url-loader": "^0.5.7",
-    "webpack": "^2.2.1"
+    "webpack": "^3.0.0"
   }
 }
