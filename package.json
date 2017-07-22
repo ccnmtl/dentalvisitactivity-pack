@@ -1,6 +1,6 @@
 {
   "name": "dentalvisitactivity-pack",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Interactive to recreate a pediatric dental visit",
   "main": "src/index.js",
   "scripts": {
@@ -46,6 +46,7 @@
     "chai": "^4.0.1",
     "jscs": "^3.0.4",
     "jshint": "^2.9.2",
+    "loglevel":  "^1.4.1",
     "mocha": "^3.2.0",
     "mocha-phantomjs": "^4.0.2",
     "phantomjs-prebuilt": "^2.1.7",
