@@ -41,11 +41,13 @@ module.exports = Backbone.View.extend({
         'click .btn-step': 'onStep',
         'click .btn-print': 'onPrint'
     },
-    numbers: ['', 'one', 'two', 'three', 'four',
-              'five', 'six', 'seven', 'eight', 'nine'],
+    numbers: [
+        '', 'one', 'two', 'three', 'four',
+        'five', 'six', 'seven', 'eight', 'nine'],
     initialize: function(options) {
-        _.bindAll(this, 'render', 'maybeEnableNext', 'beforeUnload',
-                  'onComplete', 'onPrint', 'onStep');
+        _.bindAll(
+            this, 'render', 'maybeEnableNext', 'beforeUnload',
+            'onComplete', 'onPrint', 'onStep');
         this.template = require('../static/templates/steps-template.html');
         this.steps = new StepCollection();
 
