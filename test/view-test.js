@@ -39,14 +39,13 @@ function closeDiscussion() {
 }
 
 describe('CounselingSessionApp', function() {
-    var app;
 
     before(function() {
         var elt = jQuery('div.counseling-session');
         assert.isDefined(elt);
         jQuery(elt).html('');
 
-        app = module.DentalVisitApp.initialize();
+        module.DentalVisitApp.initialize();
     });
 
     describe('interaction', function() {

@@ -166,9 +166,10 @@ DentalVisitApp.Views.CounselingSessionView = Backbone.View.extend({
         'click .btn.complete': 'onCloseDiscussion'
     },
     initialize: function(options) {
-        _.bindAll(this, 'render', 'renderState',
-                  'renderTime', 'renderCountdown',
-                  'onDiscussion', 'onCloseDiscussion');
+        _.bindAll(
+            this, 'render', 'renderState',
+            'renderTime', 'renderCountdown',
+            'onDiscussion', 'onCloseDiscussion');
 
         this.template =
             require('../static/templates/session-template.html');
@@ -283,7 +284,7 @@ DentalVisitApp.Views.CounselingSessionView = Backbone.View.extend({
 
         this.$el.find('.display_time').addClass('flash');
         jQuery(parent).find('.btn.complete')
-           .attr('disabled', 'disabled').addClass('flash');
+            .attr('disabled', 'disabled').addClass('flash');
 
         var dataId = jQuery(parent).data('id');
         var topic = this.session.get('topics').get(dataId);
