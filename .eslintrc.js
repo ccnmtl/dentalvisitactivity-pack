@@ -13,6 +13,10 @@ module.exports = {
         "eslint:recommended",
         "plugin:security/recommended"
     ],
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module"
+    },
     "globals": {
         "_": true,
         "Backbone": true,
