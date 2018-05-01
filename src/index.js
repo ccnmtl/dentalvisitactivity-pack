@@ -6,12 +6,11 @@ require('!file-loader?name=[name].[ext]!../static/img/logo-cdm.png');
 require('!file-loader?name=[name].[ext]!../static/img/logo-ctl.png');
 
 // load and apply css
-require('!style-loader!css-loader!bootstrap/dist/css/bootstrap.min.css');
-require('!style-loader!css-loader!bootstrap-arrow-buttons/dist/css/' +
-        'bootstrap-arrow-buttons.css');
-require('!style-loader!css-loader!../static/css/common.css');
-require('!style-loader!css-loader!../static/css/steps.css');
-require('!style-loader!css-loader!../static/css/dentalvisit.css');
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-arrow-buttons/dist/css/bootstrap-arrow-buttons.css';
+import '../static/css/common.css';
+import '../static/css/steps.css';
+import '../static/css/dentalvisit.css';
 
 var jQuery = require('jquery');
 var module = require('./dentalvisit.js');
