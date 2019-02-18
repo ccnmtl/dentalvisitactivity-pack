@@ -1,4 +1,3 @@
-/* global jQuery: true */
 /* eslint security/detect-non-literal-require: 0 */
 
 require('!file-loader?name=[name].[ext]!../static/index.html');
