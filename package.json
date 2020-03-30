@@ -70,7 +70,7 @@
     "json-loader": "^0.5.4",
     "style-loader": "^1.0.0",
     "svg-loader": "0.0.2",
-    "underscore": "1.9.2",
+    "underscore": "1.10.0",
     "underscore-template-loader": "^1.0.0",
     "url-loader": "^4.0.0",
     "webpack": "^4.6.0"
