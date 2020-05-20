@@ -62,7 +62,7 @@
   },
   "dependencies": {
     "backbone": "1.4.0",
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^4.1.2",
     "bootstrap-arrow-buttons": "^1.0.4",
     "css-loader": "^3.0.0",
     "file-loader": "^6.0.0",
