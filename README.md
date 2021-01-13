@@ -1,7 +1,7 @@
+[![Actions Status](https://github.com/ccnmtl/dentalvisitactivity-pack/workflows/build-and-test/badge.svg)](https://github.com/ccnmtl/dentalvisitactivity-pack/actions)
+
 Standalone Interactive Exercise: Pediatric Dental Visit 
 ==========
-
-[![Greenkeeper badge](https://badges.greenkeeper.io/ccnmtl/dentalvisitactivity-pack.svg)](https://greenkeeper.io/)
 
 ##### About the activity
 The patient arrived early and you have completed your exam, prophy and flouride treatment. You look at the clock and realize you have a little time until your next patient and decide to spend some additional time discussing one or more of the options below.
