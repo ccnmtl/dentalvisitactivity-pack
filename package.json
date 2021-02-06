@@ -4,11 +4,11 @@
   "description": "Interactive to recreate a pediatric dental visit",
   "main": "src/index.js",
   "scripts": {
-    "serve": "webpack-dev-server --hot --inline --open",
+    "serve": "webpack-dev-server --hot --inline --open --mode development",
     "test": "npm run test-unit && npm run test-client",
     "test-unit": "mocha test/model-test.js",
-    "test-client": "mocha-chrome test/view-test.html",
-    "build": "webpack && webpack --config test/test.webpack.config.js"
+    "test-client": "mocha-chrome dist/view-test.html",
+    "build": "webpack --mode production && webpack --config test/test.webpack.config.js --mpde development"
   },
   "repository": {
     "type": "git",

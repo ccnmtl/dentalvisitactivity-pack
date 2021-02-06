@@ -1,5 +1,5 @@
 /* global module: true */
-/* eslint security/detect-unsafe-regex: 0 */ 
+/* eslint security/detect-unsafe-regex: 0 */
 
 module.exports = {
     entry: './test/view-test.js',
@@ -24,13 +24,23 @@ module.exports = {
             {
                 test: /\.(png|svg|jpg|gif)$/,
                 use: [
-                    'file-loader'
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            esModule: false
+                        }
+                    }
                 ]
             },
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/,
                 use: [
-                    'file-loader'
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            esModule: false
+                        }
+                    }
                 ]
             }
         ]

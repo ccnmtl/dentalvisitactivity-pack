@@ -1,4 +1,5 @@
 /* global describe: true, before: true, it: true */
+require('!file-loader?name=[name].[ext]!../test/view-test.html');
 
 var chai = require('chai');
 var assert = chai.assert;
