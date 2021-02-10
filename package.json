@@ -8,7 +8,7 @@
     "test": "npm run test-unit && npm run test-client",
     "test-unit": "mocha test/model-test.js",
     "test-client": "mocha-chrome dist/view-test.html",
-    "build": "webpack --mode production && webpack --config test/test.webpack.config.js --mpde development"
+    "build": "webpack --mode production && webpack --config test/test.webpack.config.js --mode development"
   },
   "repository": {
     "type": "git",
