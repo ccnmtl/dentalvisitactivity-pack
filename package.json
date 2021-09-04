@@ -4,7 +4,7 @@
   "description": "Interactive to recreate a pediatric dental visit",
   "main": "src/index.js",
   "scripts": {
-    "serve": "webpack-dev-server --hot --inline --open --mode development",
+    "serve": "webpack-dev-server --hot --mode development",
     "test": "npm run test-unit && npm run test-client",
     "test-unit": "mocha test/model-test.js",
     "test-client": "mocha-chrome dist/view-test.html",
@@ -61,7 +61,7 @@
     "backbone": "1.4.0",
     "bootstrap": "^3.3.7",
     "bootstrap-arrow-buttons": "^1.0.4",
-    "css-loader": "^5.0.0",
+    "css-loader": "^6.2.0",
     "file-loader": "^6.0.0",
     "jquery": "^3.1.1",
     "json-loader": "^0.5.4",
