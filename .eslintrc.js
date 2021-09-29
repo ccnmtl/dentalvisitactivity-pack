@@ -6,7 +6,7 @@ module.exports = {
     },
     "plugins": [
         "security",
-        "no-unsfe-innerhtml"
+        "no-unsafe-innerhtml"
     ],
     "extends": [
         "eslint:recommended",
