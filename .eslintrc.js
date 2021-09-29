@@ -6,8 +6,7 @@ module.exports = {
     },
     "plugins": [
         "security",
-        "scanjs-rules",
-        "no-unsafe-innerhtml"
+        "no-unsfe-innerhtml"
     ],
     "extends": [
         "eslint:recommended",
