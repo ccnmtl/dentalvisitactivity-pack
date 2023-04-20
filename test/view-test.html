@@ -1,33 +1,32 @@
 <html>
-<head>
-    <meta charset="utf-8">
-    <!-- encoding must be set for mocha's special characters to render properly -->
-    <link rel="stylesheet" href="../node_modules/mocha/mocha.css" />
-    <script src="../node_modules/mocha/mocha.js"></script>
-    <script src="../node_modules/chai/chai.js"></script>
-</head>
-<body>
-    <div id="mocha"></div>
-    <script>
-        mocha.ui('bdd')
-        expect = chai.expect
-    </script>
-    <script src="../dist/testBundle.js"></script>
-    <script>
-        mocha.run()
-    </script>
+    <head>
+        <title>Mocha Tests</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../node_modules/mocha/mocha.css">
+    </head>
+    <body>
+        <div id="mocha"></div>
+        <script src="../node_modules/mocha/mocha.js"></script>
+        <script src="../node_modules/mocha-teamcity-reporter/lib/teamcityBrowser.js"></script>
+        <script src="../node_modules/chai/chai.js"></script>
+        <script>
+            mocha.setup('bdd');
+            expect = chai.expect;
+        </script>
+        <script src="../dist/testBundle.js"></script>
+        <script>mocha.run();</script>
 
-    <!-- @todo - consider how to include/reference project-level index.html --> 
-    <div class="row">
-        <div class="col-md-offset-1 col-md-10">
-            <div class="row titlebar">
-                <div class="col-md-5">
-                    <h3 class="interactive-module-title">Severe Childhood Caries</h3>
+        <!-- @todo - consider how to include/reference project-level index.html --> 
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10">
+                <div class="row titlebar">
+                    <div class="col-md-5">
+                        <h3 class="interactive-module-title">Severe Childhood Caries</h3>
+                    </div>
+                    <div class="col-md-7 text-right steps"></div>
                 </div>
-                <div class="col-md-7 text-right steps"></div>
+                <div class="counseling-session"></div>
             </div>
-            <div class="counseling-session"></div>
         </div>
-    </div>
-</body>
+    </body>
 </html>
