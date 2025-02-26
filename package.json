@@ -7,7 +7,8 @@
     "serve": "webpack-dev-server --hot --mode development",
     "test": "npm run test-unit && npm run test-client",
     "test-unit": "mocha test/model-test.js",
-    "test-client": "mocha-headless-chrome -f dist/view-test.html",
+    "test-client-dev": "mocha-headless-chrome -f dist/view-test.html",
+    "test-client": "sh -c \"[ \\\"$CI\\\" = \\\"true\\\" ] && mocha-headless-chrome -f dist/view-test.html --no-sandbox || mocha-headless-chrome -f dist/view-test.html\"", 
     "build": "webpack --mode production && webpack --config test/test.webpack.config.js --mode development"
   },
   "repository": {
