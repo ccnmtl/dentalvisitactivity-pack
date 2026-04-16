@@ -50,7 +50,7 @@
     "@eslint/eslintrc": "^3.3.4",
     "@eslint/js": "^10.0.1",
     "chai": "^6.0.0",
-    "eslint": "~10.1.0",
+    "eslint": "~10.2.0",
     "eslint-plugin-no-unsafe-innerhtml": "^1.0.16",
     "eslint-plugin-security": "^4.0.0",
     "globals": "^17.0.0",
